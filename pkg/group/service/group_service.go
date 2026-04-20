@@ -425,11 +425,14 @@ func (g *groupService) GetMyGroups(instance *instance_model.Instance) ([]types.G
 	// phone number fields (OwnerPN / PhoneNumber) instead of OwnerJID / JID.
 	myUser := client.Store.ID.ToNonAD().User
 
-	myGroups := make([]types.GroupInfo, 0)
+	myGroups := make([]types.GroupInfo, 0, len(resp))
 	for _, group := range resp {
 		// Primary check: OwnerPN holds the owner's phone-number JID even when
-		// the main OwnerJID is in LID format.
-		if group.OwnerPN.User == myUser || group.OwnerJID.User == myUser {
+		// the main OwnerJID is in LID format. Guard myUser != "" to avoid
+		// false positives when the client JID is unexpectedly zero-valued.
+		ownerPhone := group.OwnerPN.User
+		ownerJID := group.OwnerJID.User
+		if myUser != "" && (ownerPhone == myUser || ownerJID == myUser) {
 			myGroups = append(myGroups, *group)
 			continue
 		}
@@ -439,7 +442,7 @@ func (g *groupService) GetMyGroups(instance *instance_model.Instance) ([]types.G
 			if participantPhone == "" {
 				participantPhone = participant.JID.User
 			}
-			if participantPhone == myUser && (participant.IsAdmin || participant.IsSuperAdmin) {
+			if myUser != "" && participantPhone == myUser && (participant.IsAdmin || participant.IsSuperAdmin) {
 				myGroups = append(myGroups, *group)
 				break
 			}
