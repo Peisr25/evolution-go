@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evolution GO Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { 600: '#16a34a', 700: '#15803d' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    .pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    .spin { animation: spin 1s linear infinite; }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+<div class="flex h-screen overflow-hidden">
+  <!-- Sidebar -->
+  <aside class="flex h-screen w-56 flex-col border-r border-gray-200 bg-white">
+    <div class="flex items-center gap-2 px-5 py-5 border-b border-gray-100">
+      <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      <span class="font-semibold text-gray-800 text-sm">Evolution GO</span>
+    </div>
+    <nav class="flex-1 px-3 py-4 space-y-1">
+      <a href="/manager"
+         class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium bg-green-50 text-green-700">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        Dashboard
+      </a>
+      <a href="/manager/instances"
+         class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <path d="M8 21h8M12 17v4"/>
+        </svg>
+        Instâncias
+      </a>
+    </nav>
+    <div class="px-3 py-4 border-t border-gray-100 text-xs text-gray-400 px-5">
+      Evolution GO Manager
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 overflow-y-auto bg-gray-50 p-8">
+    <div class="space-y-8">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <p class="mt-1 text-sm text-gray-500">Visão geral das instâncias WhatsApp</p>
+        </div>
+        <button onclick="loadData()"
+          class="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          <svg id="refresh-icon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+          Atualizar
+        </button>
+      </div>
+
+      <!-- Metric cards -->
+      <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500">Total de Instâncias</p>
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
+              <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+          </div>
+          <p id="metric-total" class="mt-3 text-3xl font-bold text-gray-900">…</p>
+          <p class="mt-1 text-xs text-gray-400">registradas no sistema</p>
+        </div>
+
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500">Conectadas</p>
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
+              <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+              </svg>
+            </div>
+          </div>
+          <p id="metric-connected" class="mt-3 text-3xl font-bold text-gray-900">…</p>
+          <p id="metric-connected-pct" class="mt-1 text-xs text-gray-400">do total</p>
+        </div>
+
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500">Desconectadas</p>
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50">
+              <svg class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3"/>
+              </svg>
+            </div>
+          </div>
+          <p id="metric-disconnected" class="mt-3 text-3xl font-bold text-gray-900">…</p>
+          <p class="mt-1 text-xs text-gray-400">aguardando reconexão</p>
+        </div>
+
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium text-gray-500">Servidor</p>
+            <div id="server-icon-bg" class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-50">
+              <svg id="server-icon" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+          </div>
+          <p id="metric-server" class="mt-3 text-3xl font-bold text-gray-900">…</p>
+          <p id="metric-always-online" class="mt-1 text-xs text-gray-400">verificando…</p>
+        </div>
+      </div>
+
+      <!-- Instance table -->
+      <div class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100">
+          <h2 class="text-base font-semibold text-gray-900">Instâncias</h2>
+          <p class="text-xs text-gray-400 mt-0.5">Atualizado automaticamente a cada 30s</p>
+        </div>
+        <div id="table-container">
+          <div class="px-6 py-10 text-center text-sm text-gray-400">Carregando…</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  const apiKey = localStorage.getItem('apikey') || ''
+
+  async function apiFetch(path) {
+    const res = await fetch(path, { headers: { apikey: apiKey } })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    return res.json()
+  }
+
+  function set(id, val) {
+    const el = document.getElementById(id)
+    if (el) el.textContent = val
+  }
+
+  function renderTable(instances) {
+    const container = document.getElementById('table-container')
+    if (!instances.length) {
+      container.innerHTML = '<div class="px-6 py-10 text-center text-sm text-gray-400">Nenhuma instância encontrada.</div>'
+      return
+    }
+    const rows = instances.map(inst => {
+      const phone = (inst.jid || '').replace(/@.+/, '') || '—'
+      const statusBadge = inst.connected
+        ? `<span class="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+             <span class="h-1.5 w-1.5 rounded-full bg-green-500 pulse"></span>Conectado</span>`
+        : `<span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-500">
+             <span class="h-1.5 w-1.5 rounded-full bg-gray-400"></span>Desconectado</span>`
+      const alwaysOnline = inst.alwaysOnline
+        ? `<span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">⚡ Ativo</span>`
+        : `<span class="text-xs text-gray-400">—</span>`
+      return `
+        <tr class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
+          <td class="py-3 px-4">
+            <span class="font-medium text-gray-900 text-sm">${inst.name}</span>
+          </td>
+          <td class="py-3 px-4">${statusBadge}</td>
+          <td class="py-3 px-4 text-sm text-gray-500">${phone}</td>
+          <td class="py-3 px-4 text-sm text-gray-400">${inst.clientName || '—'}</td>
+          <td class="py-3 px-4">${alwaysOnline}</td>
+        </tr>`
+    }).join('')
+
+    container.innerHTML = `
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Nome</th>
+              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Status</th>
+              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Telefone</th>
+              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Client</th>
+              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">AlwaysOnline</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`
+  }
+
+  async function loadData() {
+    const icon = document.getElementById('refresh-icon')
+    icon.classList.add('spin')
+    try {
+      const [instancesRes, serverRes] = await Promise.allSettled([
+        apiFetch('/instance/all'),
+        apiFetch('/server/ok'),
+      ])
+
+      // Server status
+      if (serverRes.status === 'fulfilled') {
+        const ok = serverRes.value.status === 'ok'
+        set('metric-server', ok ? 'Online' : 'Erro')
+        const bg = document.getElementById('server-icon-bg')
+        const ic = document.getElementById('server-icon')
+        bg.className = `flex h-10 w-10 items-center justify-center rounded-lg ${ok ? 'bg-green-50' : 'bg-red-50'}`
+        ic.className = `h-5 w-5 ${ok ? 'text-green-600' : 'text-red-500'}`
+      } else {
+        set('metric-server', 'Erro')
+      }
+
+      // Instances
+      if (instancesRes.status === 'fulfilled') {
+        const instances = instancesRes.value.data || []
+        const total = instances.length
+        const connected = instances.filter(i => i.connected).length
+        const disconnected = total - connected
+        const alwaysOnlineCount = instances.filter(i => i.alwaysOnline).length
+
+        set('metric-total', total)
+        set('metric-connected', connected)
+        set('metric-disconnected', disconnected)
+        set('metric-connected-pct', total > 0 ? `${Math.round(connected / total * 100)}% do total` : 'do total')
+        set('metric-always-online', alwaysOnlineCount > 0 ? `${alwaysOnlineCount} com AlwaysOnline` : 'AlwaysOnline inativo')
+
+        renderTable(instances)
+      } else {
+        set('metric-total', '—')
+        set('metric-connected', '—')
+        set('metric-disconnected', '—')
+        document.getElementById('table-container').innerHTML =
+          '<div class="px-6 py-10 text-center text-sm text-red-500">Erro ao buscar instâncias. Verifique a API Key.</div>'
+      }
+    } finally {
+      icon.classList.remove('spin')
+    }
+  }
+
+  loadData()
+  setInterval(loadData, 30000)
+</script>
+</body>
+</html>
