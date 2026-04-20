@@ -29,6 +29,7 @@ type InstanceRepository interface {
 	GetAllConnectedInstances() ([]*instance_model.Instance, error)
 	GetAllConnectedInstancesByClientName(clientName string) ([]*instance_model.Instance, error)
 	GetAll(clientName string) ([]*instance_model.Instance, error)
+	GetAllInstances() ([]*instance_model.Instance, error)
 	Delete(instanceId string) error
 	GetAdvancedSettings(instanceId string) (*instance_model.AdvancedSettings, error)
 	UpdateAdvancedSettings(instanceId string, settings *instance_model.AdvancedSettings) error
@@ -144,6 +145,12 @@ func (i *instanceRepository) GetAll(clientName string) ([]*instance_model.Instan
 	}
 
 	return instances, nil
+}
+
+func (i *instanceRepository) GetAllInstances() ([]*instance_model.Instance, error) {
+	var instances []*instance_model.Instance
+	err := i.db.Find(&instances).Error
+	return instances, err
 }
 
 func (i *instanceRepository) Delete(instanceId string) error {

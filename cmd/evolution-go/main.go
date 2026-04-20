@@ -29,6 +29,7 @@ import (
 	community_service "github.com/EvolutionAPI/evolution-go/pkg/community/service"
 	config "github.com/EvolutionAPI/evolution-go/pkg/config"
 	"github.com/EvolutionAPI/evolution-go/pkg/core"
+	"github.com/EvolutionAPI/evolution-go/pkg/metrics"
 	producer_interfaces "github.com/EvolutionAPI/evolution-go/pkg/events/interfaces"
 	nats_producer "github.com/EvolutionAPI/evolution-go/pkg/events/nats"
 	rabbitmq_producer "github.com/EvolutionAPI/evolution-go/pkg/events/rabbitmq"
@@ -158,6 +159,7 @@ func setupRouter(db *gorm.DB, authDB *sql.DB, sqliteDB *sql.DB, config *config.C
 	}
 
 	instanceRepository := instance_repository.NewInstanceRepository(db)
+
 	messageRepository := message_repository.NewMessageRepository(db)
 	labelRepository := label_repository.NewLabelRepository(db)
 
@@ -200,6 +202,10 @@ func setupRouter(db *gorm.DB, authDB *sql.DB, sqliteDB *sql.DB, config *config.C
 	pollHandler := poll_handler.NewPollHandler(whatsmeowService.GetPollService(), loggerWrapper)
 
 	r := gin.Default()
+
+	metricsRegistry := metrics.New(version, instanceRepository)
+	r.Use(metricsRegistry.GinMiddleware())
+	r.GET("/metrics", gin.WrapH(metricsRegistry.Handler()))
 
 	// CORS middleware — must be before everything else
 	r.Use(func(c *gin.Context) {
