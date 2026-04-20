@@ -32,6 +32,8 @@ type chatService struct {
 
 type BodyStruct struct {
 	Chat string `json:"chat"`
+	// Duration is used by mute operations: seconds to mute (0 = mute forever).
+	Duration int64 `json:"duration,omitempty"`
 }
 
 type HistorySyncRequestStruct struct {
@@ -184,7 +186,8 @@ func (c *chatService) ChatMute(data *BodyStruct, instance *instance_model.Instan
 		return "", errors.New("invalid phone number")
 	}
 
-	err = client.SendAppState(context.Background(), appstate.BuildMute(recipient, true, 1*time.Hour))
+	muteDuration := time.Duration(data.Duration) * time.Second
+	err = client.SendAppState(context.Background(), appstate.BuildMute(recipient, true, muteDuration))
 	if err != nil {
 		c.loggerWrapper.GetLogger(instance.Id).LogError("[%s] error mute chat: %v", instance.Id, err)
 		return "", err
