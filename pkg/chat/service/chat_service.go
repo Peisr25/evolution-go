@@ -3,6 +3,7 @@ package chat_service
 import (
 	"context"
 	"errors"
+	"fmt"
 	"time"
 
 	instance_model "github.com/EvolutionAPI/evolution-go/pkg/instance/model"
@@ -172,10 +173,20 @@ func (c *chatService) ChatUnarchive(data *BodyStruct, instance *instance_model.I
 	return ts.String(), nil
 }
 
+// maxMuteDurationSeconds caps mute at 1 year to avoid unreasonably large timestamps.
+const maxMuteDurationSeconds = 365 * 24 * 3600
+
 func (c *chatService) ChatMute(data *BodyStruct, instance *instance_model.Instance) (string, error) {
 	client, err := c.ensureClientConnected(instance.Id)
 	if err != nil {
 		return "", err
+	}
+
+	if data.Duration < 0 {
+		return "", errors.New("duration must be >= 0 (0 = mute forever)")
+	}
+	if data.Duration > maxMuteDurationSeconds {
+		return "", fmt.Errorf("duration exceeds maximum allowed value of %d seconds (1 year)", maxMuteDurationSeconds)
 	}
 
 	var ts time.Time
@@ -186,6 +197,7 @@ func (c *chatService) ChatMute(data *BodyStruct, instance *instance_model.Instan
 		return "", errors.New("invalid phone number")
 	}
 
+	// duration=0 is passed as-is: BuildMute treats 0 as "mute forever" (sets timestamp to -1).
 	muteDuration := time.Duration(data.Duration) * time.Second
 	err = client.SendAppState(context.Background(), appstate.BuildMute(recipient, true, muteDuration))
 	if err != nil {
