@@ -147,7 +147,14 @@
 <script>
   const apiKey = localStorage.getItem('apikey') || ''
 
+  function esc(str) {
+    const d = document.createElement('div')
+    d.textContent = str == null ? '' : String(str)
+    return d.innerHTML
+  }
+
   async function apiFetch(path) {
+    if (!apiKey) throw new Error('missing-apikey')
     const res = await fetch(path, { headers: { apikey: apiKey } })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     return res.json()
@@ -158,52 +165,87 @@
     if (el) el.textContent = val
   }
 
+  function renderMissingApiKey() {
+    const container = document.getElementById('table-container')
+    container.innerHTML = '<div class="px-6 py-10 text-center text-sm text-yellow-600">API Key não configurada. Defina <code>localStorage.setItem(\'apikey\', \'SUA_KEY\')</code> no console e recarregue.</div>'
+    set('metric-total', '—')
+    set('metric-connected', '—')
+    set('metric-disconnected', '—')
+  }
+
   function renderTable(instances) {
     const container = document.getElementById('table-container')
     if (!instances.length) {
       container.innerHTML = '<div class="px-6 py-10 text-center text-sm text-gray-400">Nenhuma instância encontrada.</div>'
       return
     }
-    const rows = instances.map(inst => {
+
+    const wrapper = document.createElement('div')
+    wrapper.className = 'overflow-x-auto'
+
+    const table = document.createElement('table')
+    table.className = 'w-full text-left'
+
+    const thead = document.createElement('thead')
+    thead.innerHTML = `
+      <tr class="bg-gray-50">
+        <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Nome</th>
+        <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Status</th>
+        <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Telefone</th>
+        <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Client</th>
+        <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">AlwaysOnline</th>
+      </tr>`
+    table.appendChild(thead)
+
+    const tbody = document.createElement('tbody')
+    instances.forEach(inst => {
       const phone = (inst.jid || '').replace(/@.+/, '') || '—'
-      const statusBadge = inst.connected
-        ? `<span class="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
-             <span class="h-1.5 w-1.5 rounded-full bg-green-500 pulse"></span>Conectado</span>`
-        : `<span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-500">
-             <span class="h-1.5 w-1.5 rounded-full bg-gray-400"></span>Desconectado</span>`
-      const alwaysOnline = inst.alwaysOnline
+
+      const tr = document.createElement('tr')
+      tr.className = 'border-t border-gray-100 hover:bg-gray-50 transition-colors'
+
+      const tdName = document.createElement('td')
+      tdName.className = 'py-3 px-4'
+      const nameSpan = document.createElement('span')
+      nameSpan.className = 'font-medium text-gray-900 text-sm'
+      nameSpan.textContent = inst.name || '—'
+      tdName.appendChild(nameSpan)
+
+      const tdStatus = document.createElement('td')
+      tdStatus.className = 'py-3 px-4'
+      tdStatus.innerHTML = inst.connected
+        ? `<span class="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700"><span class="h-1.5 w-1.5 rounded-full bg-green-500 pulse"></span>Conectado</span>`
+        : `<span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-500"><span class="h-1.5 w-1.5 rounded-full bg-gray-400"></span>Desconectado</span>`
+
+      const tdPhone = document.createElement('td')
+      tdPhone.className = 'py-3 px-4 text-sm text-gray-500'
+      tdPhone.textContent = phone
+
+      const tdClient = document.createElement('td')
+      tdClient.className = 'py-3 px-4 text-sm text-gray-400'
+      tdClient.textContent = inst.clientName || '—'
+
+      const tdAO = document.createElement('td')
+      tdAO.className = 'py-3 px-4'
+      tdAO.innerHTML = inst.alwaysOnline
         ? `<span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">⚡ Ativo</span>`
         : `<span class="text-xs text-gray-400">—</span>`
-      return `
-        <tr class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4">
-            <span class="font-medium text-gray-900 text-sm">${inst.name}</span>
-          </td>
-          <td class="py-3 px-4">${statusBadge}</td>
-          <td class="py-3 px-4 text-sm text-gray-500">${phone}</td>
-          <td class="py-3 px-4 text-sm text-gray-400">${inst.clientName || '—'}</td>
-          <td class="py-3 px-4">${alwaysOnline}</td>
-        </tr>`
-    }).join('')
 
-    container.innerHTML = `
-      <div class="overflow-x-auto">
-        <table class="w-full text-left">
-          <thead>
-            <tr class="bg-gray-50">
-              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Nome</th>
-              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Status</th>
-              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Telefone</th>
-              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Client</th>
-              <th class="py-3 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500">AlwaysOnline</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>`
+      tr.append(tdName, tdStatus, tdPhone, tdClient, tdAO)
+      tbody.appendChild(tr)
+    })
+
+    table.appendChild(tbody)
+    wrapper.appendChild(table)
+    container.replaceChildren(wrapper)
   }
 
   async function loadData() {
+    if (!apiKey) {
+      renderMissingApiKey()
+      return
+    }
+
     const icon = document.getElementById('refresh-icon')
     icon.classList.add('spin')
     try {
