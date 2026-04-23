@@ -186,7 +186,7 @@ func (c *chatService) ChatMute(data *BodyStruct, instance *instance_model.Instan
 		return "", errors.New("duration must be >= 0 (0 = mute forever)")
 	}
 	if data.Duration > maxMuteDurationSeconds {
-		return "", fmt.Errorf("duration exceeds maximum allowed value of %d seconds (1 year)", maxMuteDurationSeconds)
+		return "", fmt.Errorf("mute duration exceeds 1 year limit (%d seconds maximum)", maxMuteDurationSeconds)
 	}
 
 	var ts time.Time

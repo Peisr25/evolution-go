@@ -204,7 +204,6 @@ func setupRouter(db *gorm.DB, authDB *sql.DB, sqliteDB *sql.DB, config *config.C
 	r := gin.Default()
 
 	metricsRegistry := metrics.New(version, instanceRepository)
-	r.Use(metricsRegistry.GinMiddleware())
 	r.GET("/metrics", gin.WrapH(metricsRegistry.Handler()))
 
 	// CORS middleware — must be before everything else
@@ -221,6 +220,7 @@ func setupRouter(db *gorm.DB, authDB *sql.DB, sqliteDB *sql.DB, config *config.C
 		c.Next()
 	})
 
+	r.Use(metricsRegistry.GinMiddleware())
 	r.Use(core.GateMiddleware(runtimeCtx))
 
 	// License routes (always accessible, even without license)
