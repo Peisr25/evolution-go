@@ -3,6 +3,7 @@ package metrics
 import (
 	"net/http"
 	"strconv"
+	"sync"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -98,13 +99,24 @@ func (r *Registry) GinMiddleware() gin.HandlerFunc {
 	}
 }
 
+const collectorCacheTTL = 30 * time.Second
+
+type instanceSnapshot struct {
+	total, connected, disconnected float64
+}
+
 // instanceCollector is a custom prometheus.Collector that queries the database at
 // scrape time so the gauge values are always current without requiring event hooks.
+// Results are cached for collectorCacheTTL to avoid a DB hit on every scrape.
 type instanceCollector struct {
 	repo             instance_repository.InstanceRepository
 	descTotal        *prometheus.Desc
 	descConnected    *prometheus.Desc
 	descDisconnected *prometheus.Desc
+
+	mu       sync.Mutex
+	snapshot *instanceSnapshot
+	snapAt   time.Time
 }
 
 func newInstanceCollector(repo instance_repository.InstanceRepository) prometheus.Collector {
@@ -135,6 +147,15 @@ func (c *instanceCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (c *instanceCollector) Collect(ch chan<- prometheus.Metric) {
+	c.mu.Lock()
+	if c.snapshot != nil && time.Since(c.snapAt) < collectorCacheTTL {
+		snap := c.snapshot
+		c.mu.Unlock()
+		c.emit(ch, snap)
+		return
+	}
+	c.mu.Unlock()
+
 	instances, err := c.repo.GetAllInstances()
 	if err != nil {
 		// Emit nothing on error rather than stale data.
@@ -148,8 +169,18 @@ func (c *instanceCollector) Collect(ch chan<- prometheus.Metric) {
 		}
 	}
 	total := float64(len(instances))
+	snap := &instanceSnapshot{total: total, connected: connected, disconnected: total - connected}
 
-	ch <- prometheus.MustNewConstMetric(c.descTotal, prometheus.GaugeValue, total)
-	ch <- prometheus.MustNewConstMetric(c.descConnected, prometheus.GaugeValue, connected)
-	ch <- prometheus.MustNewConstMetric(c.descDisconnected, prometheus.GaugeValue, total-connected)
+	c.mu.Lock()
+	c.snapshot = snap
+	c.snapAt = time.Now()
+	c.mu.Unlock()
+
+	c.emit(ch, snap)
+}
+
+func (c *instanceCollector) emit(ch chan<- prometheus.Metric, snap *instanceSnapshot) {
+	ch <- prometheus.MustNewConstMetric(c.descTotal, prometheus.GaugeValue, snap.total)
+	ch <- prometheus.MustNewConstMetric(c.descConnected, prometheus.GaugeValue, snap.connected)
+	ch <- prometheus.MustNewConstMetric(c.descDisconnected, prometheus.GaugeValue, snap.disconnected)
 }
