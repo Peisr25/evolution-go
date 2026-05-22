@@ -3646,6 +3646,10 @@ const docTemplate = `{
         },
         "github_com_EvolutionAPI_evolution-go_pkg_group_service.UpdateGroupSettingsStruct": {
             "type": "object",
+            "required": [
+                "groupJid",
+                "action"
+            ],
             "properties": {
                 "groupJid": {
                     "type": "string"

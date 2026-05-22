@@ -87,6 +87,9 @@ definitions:
         type: string
       groupJid:
         type: string
+    required:
+    - groupJid
+    - action
     type: object
   github_com_EvolutionAPI_evolution-go_pkg_group_service.LeaveGroupStruct:
     properties:
