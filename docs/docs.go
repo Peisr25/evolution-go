@@ -791,6 +791,52 @@ const docTemplate = `{
                 }
             }
         },
+        "/group/settings": {
+            "post": {
+                "description": "Update group settings (announcement, not_announcement, locked, unlocked, approval_on, approval_off, admin_add, all_member_add)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Update group settings",
+                "parameters": [
+                    {
+                        "description": "Group data",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_group_service.UpdateGroupSettingsStruct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "400": {
+                        "description": "Error on validation",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
         "/group/list": {
             "get": {
                 "description": "List groups",
@@ -3595,6 +3641,27 @@ const docTemplate = `{
             "properties": {
                 "code": {
                     "type": "string"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_group_service.UpdateGroupSettingsStruct": {
+            "type": "object",
+            "properties": {
+                "groupJid": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "string",
+                    "enum": [
+                        "announcement",
+                        "not_announcement",
+                        "locked",
+                        "unlocked",
+                        "approval_on",
+                        "approval_off",
+                        "admin_add",
+                        "all_member_add"
+                    ]
                 }
             }
         },
