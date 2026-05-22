@@ -7,8 +7,10 @@ WORKDIR /build
 # Copiar apenas arquivos de dependências primeiro para cachear o download
 COPY go.mod go.sum ./
 
-# Copiar whatsmeow-lib que é uma dependência local
-COPY whatsmeow-lib/ ./whatsmeow-lib/
+# Clonar whatsmeow-lib no commit exato do submodule
+RUN git clone https://github.com/EvolutionAPI/whatsmeow.git whatsmeow-lib && \
+    cd whatsmeow-lib && \
+    git checkout 0923702fb3fac8525241f15331b92116485d69eb
 
 # Agora fazer download das dependências (com replace funcionando)
 RUN go mod download
