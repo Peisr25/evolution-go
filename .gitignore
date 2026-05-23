@@ -17,3 +17,5 @@ manager/tsconfig*.json
 manager/vite.config.ts
 manager/index.html
 evo que funciona botõtes carossel pix etc para analise/
+docker-compose.yml
+docker/

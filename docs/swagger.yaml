@@ -710,6 +710,25 @@ definitions:
       code:
         type: string
     type: object
+  github_com_EvolutionAPI_evolution-go_pkg_group_service.UpdateGroupSettingsStruct:
+    properties:
+      action:
+        enum:
+        - announcement
+        - not_announcement
+        - locked
+        - unlocked
+        - approval_on
+        - approval_off
+        - admin_add
+        - all_member_add
+        type: string
+      groupJid:
+        type: string
+    required:
+    - groupJid
+    - action
+    type: object
   github_com_EvolutionAPI_evolution-go_pkg_group_service.LeaveGroupStruct:
     properties:
       groupJid:
@@ -7793,6 +7812,37 @@ paths:
           schema:
             $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Leave group
+      tags:
+      - Group
+  /group/settings:
+    post:
+      consumes:
+      - application/json
+      description: Update group settings (announcement, not_announcement, locked,
+        unlocked, approval_on, approval_off, admin_add, all_member_add)
+      parameters:
+      - description: Group data
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_group_service.UpdateGroupSettingsStruct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/gin.H'
+        "400":
+          description: Error on validation
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Update group settings
       tags:
       - Group
   /group/list:

@@ -8,7 +8,9 @@ WORKDIR /build
 COPY go.mod go.sum ./
 
 # Clonar whatsmeow-lib diretamente (submodule não é inicializado pelo Railway)
-RUN git clone https://github.com/EvolutionAPI/whatsmeow.git whatsmeow-lib
+RUN git clone https://github.com/EvolutionAPI/whatsmeow.git whatsmeow-lib && \
+    cd whatsmeow-lib && \
+    git checkout 0923702fb3fac8525241f15331b92116485d69eb
 
 # Agora fazer download das dependências (com replace funcionando)
 RUN go mod download
