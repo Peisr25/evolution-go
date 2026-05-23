@@ -7,3 +7,12 @@ coverage.*
 .idea/
 .vscode/
 .DS_Store
+manager/node_modules/
+manager/src/
+manager/package.json
+manager/package-lock.json
+manager/postcss.config.js
+manager/tailwind.config.ts
+manager/tsconfig*.json
+manager/vite.config.ts
+manager/index.html
