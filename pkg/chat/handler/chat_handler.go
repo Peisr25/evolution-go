@@ -204,7 +204,7 @@ func (c *chatHandler) ChatUnarchive(ctx *gin.Context) {
 
 // Mute a chat
 // @Summary Mute a chat
-// @Description Mute a chat
+// @Description Mute a chat. Set duration to the number of seconds to mute (e.g. 28800 = 8 hours, 604800 = 1 week). Use 0 to mute forever.
 // @Tags Chat
 // @Accept json
 // @Produce json
