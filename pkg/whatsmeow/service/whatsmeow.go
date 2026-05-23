@@ -1905,6 +1905,15 @@ func (mycli *MyClient) myEventHandler(rawEvt interface{}) {
 	case *events.PushName:
 		doWebhook = true
 		postMap["event"] = "PushName"
+	case *events.Picture:
+		doWebhook = true
+		postMap["event"] = "Picture"
+	case *events.UserAbout:
+		doWebhook = true
+		postMap["event"] = "UserAbout"
+	case *events.BusinessName:
+		doWebhook = true
+		postMap["event"] = "BusinessName"
 	case *events.IdentityChange:
 		doWebhook = false
 	case *events.GroupInfo:
@@ -2131,6 +2140,21 @@ func (w *whatsmeowService) CallWebhook(instance *instance_model.Instance, queueN
 		}
 	case "ButtonClick":
 		if contains(subscriptions, "BUTTON_CLICK") || contains(subscriptions, "MESSAGE") {
+			w.loggerWrapper.GetLogger(instance.Id).LogInfo("[%s] Event received of type %s", instance.Id, eventType)
+			w.sendToQueueOrWebhook(instance, queueName, jsonData)
+		}
+	case "Picture":
+		if contains(subscriptions, "PICTURE") {
+			w.loggerWrapper.GetLogger(instance.Id).LogInfo("[%s] Event received of type %s", instance.Id, eventType)
+			w.sendToQueueOrWebhook(instance, queueName, jsonData)
+		}
+	case "UserAbout":
+		if contains(subscriptions, "USER_ABOUT") {
+			w.loggerWrapper.GetLogger(instance.Id).LogInfo("[%s] Event received of type %s", instance.Id, eventType)
+			w.sendToQueueOrWebhook(instance, queueName, jsonData)
+		}
+	case "BusinessName":
+		if contains(subscriptions, "BUSINESS_NAME") {
 			w.loggerWrapper.GetLogger(instance.Id).LogInfo("[%s] Event received of type %s", instance.Id, eventType)
 			w.sendToQueueOrWebhook(instance, queueName, jsonData)
 		}
