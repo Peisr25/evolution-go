@@ -1,7 +1,4 @@
 definitions:
-  gin.H:
-    additionalProperties: {}
-    type: object
   github_com_EvolutionAPI_evolution-go_pkg_call_service.RejectCallStruct:
     properties:
       callCreator:
@@ -33,6 +30,647 @@ definitions:
   github_com_EvolutionAPI_evolution-go_pkg_community_service.CreateCommunityStruct:
     properties:
       communityName:
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.AdvancedSettingsResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.AdvancedSettings'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.AvatarData:
+    properties:
+      url:
+        example: https://pps.whatsapp.net/v/t61.24694-24/12345678_123456789012345_1234567890123456789_n.jpg
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.AvatarResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.AvatarData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistData:
+    properties:
+      jids:
+        example:
+        - 5511999999999@s.whatsapp.net
+        - 5511988888888@s.whatsapp.net
+        items:
+          type: string
+        type: array
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.CallRejectResponse:
+    properties:
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionData:
+    properties:
+      timestamp:
+        example: 1705314600
+        type: integer
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityResponse'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.CommunityResponse:
+    properties:
+      jid:
+        example: 1234567890@g.us
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ConnectData:
+    properties:
+      eventString:
+        example: MESSAGE,GROUP_UP
+        type: string
+      jid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+      webhookUrl:
+        example: http://localhost:8080/webhook
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ConnectFullResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ConnectData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ContactInfoData:
+    properties:
+      jid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+      pushName:
+        example: John Doe
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ContactListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ContactInfoData'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error400:
+    properties:
+      error:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400Detail'
+      meta:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error400Detail:
+    properties:
+      code:
+        example: BAD_REQUEST
+        type: string
+      message:
+        example: Invalid request data
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error401:
+    properties:
+      error:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401Detail'
+      meta:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error401Detail:
+    properties:
+      code:
+        example: UNAUTHORIZED
+        type: string
+      message:
+        example: Invalid or missing API key
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error403:
+    properties:
+      error:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403Detail'
+      meta:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error403Detail:
+    properties:
+      code:
+        example: FORBIDDEN
+        type: string
+      message:
+        example: Insufficient permissions
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error404:
+    properties:
+      error:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404Detail'
+      meta:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error404Detail:
+    properties:
+      code:
+        example: NOT_FOUND
+        type: string
+      message:
+        example: Resource not found
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error500:
+    properties:
+      error:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500Detail'
+      meta:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.Error500Detail:
+    properties:
+      code:
+        example: INTERNAL_SERVER_ERROR
+        type: string
+      message:
+        example: An unexpected error occurred
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta:
+    properties:
+      method:
+        example: GET
+        type: string
+      path:
+        example: /api/path
+        type: string
+      timestamp:
+        example: "2024-01-15T10:30:00Z"
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfo:
+    properties:
+      isReadOnly:
+        example: false
+        type: boolean
+      jid:
+        example: 1234567890@g.us
+        type: string
+      name:
+        example: Group Name
+        type: string
+      owner:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfoResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfo'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.GroupInviteResponse:
+    properties:
+      data:
+        example: https://chat.whatsapp.com/...
+        type: string
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.GroupListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfo'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.GroupPhotoResponse:
+    properties:
+      data:
+        properties:
+          pictureId:
+            example: "1234567890"
+            type: string
+        type: object
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncData:
+    properties:
+      messageId:
+        example: 3EB00000000000000000
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.InstanceListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.Instance'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.InstanceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.Instance'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusData:
+    properties:
+      connected:
+        example: true
+        type: boolean
+      loggedIn:
+        example: true
+        type: boolean
+      myJid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+      name:
+        example: Instance Name
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppResponse'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppResponse:
+    properties:
+      exists:
+        example: true
+        type: boolean
+      jid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.LabelData:
+    properties:
+      id:
+        example: uuid-string
+        type: string
+      instance_id:
+        example: uuid-string
+        type: string
+      label_color:
+        example: '#dfaef0'
+        type: string
+      label_id:
+        example: "1"
+        type: string
+      label_name:
+        example: Work
+        type: string
+      predefined_id:
+        example: "1"
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.LabelListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.LabelData'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.MessageKey:
+    properties:
+      fromMe:
+        example: true
+        type: boolean
+      id:
+        example: 3EB00000000000000000
+        type: string
+      remoteJid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.MessageSendData:
+    properties:
+      key:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.MessageKey'
+      messageTimestamp:
+        example: 1705314600
+        type: integer
+      status:
+        example: PENDING
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMetadata'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessage:
+    properties:
+      id:
+        example: 3EB00000000000000000
+        type: string
+      text:
+        example: Hello World
+        type: string
+      timestamp:
+        example: 1705314600
+        type: integer
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessagesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessage'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMetadata:
+    properties:
+      description:
+        example: Updates about Evolution API
+        type: string
+      id:
+        example: 1234567890@newsletter
+        type: string
+      inviteCode:
+        example: AbCdEfGh1234
+        type: string
+      name:
+        example: Evolution API Channel
+        type: string
+      subscriberCount:
+        example: 150
+        type: integer
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMetadata'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.PairResponse:
+    properties:
+      data:
+        properties:
+          pairingCode:
+            example: ABC1DEF2
+            type: string
+        type: object
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.PollOptionCounts:
+    properties:
+      option_1_hash:
+        example: 5
+        type: integer
+      option_2_hash:
+        example: 3
+        type: integer
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsData:
+    properties:
+      optionCounts:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PollOptionCounts'
+      pollChatJid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+      pollMessageId:
+        example: 3EB00000000000000000
+        type: string
+      totalVotes:
+        example: 10
+        type: integer
+      voters:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.VoterInfo'
+        type: array
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsData:
+    properties:
+      groupadd:
+        example: all
+        type: string
+      last:
+        example: all
+        type: string
+      online:
+        example: all
+        type: string
+      profile:
+        example: all
+        type: string
+      readreceipts:
+        example: all
+        type: string
+      status:
+        example: all
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.QRData:
+    properties:
+      code:
+        example: "1234567890"
+        type: string
+      qrcode:
+        example: 1@...|...
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.QRFullResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.QRData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.MessageSendData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.ServerOkResponse:
+    properties:
+      status:
+        example: ok
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse:
+    properties:
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockData:
+    properties:
+      jid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoData:
+    properties:
+      pictureId:
+        example: "1234567890"
+        type: string
+      status:
+        example: Hey there! I am using WhatsApp.
+        type: string
+      verifiedName:
+        example: John Doe
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoData'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileData:
+    properties:
+      timestamp:
+        example: 1705314600
+        type: integer
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileData'
+      message:
+        example: success
+        type: string
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_core.VoterInfo:
+    properties:
+      jid:
+        example: 5511999999999@s.whatsapp.net
+        type: string
+      name:
+        example: John Doe
+        type: string
+      selectedOptions:
+        example:
+        - option_1_hash
+        items:
+          type: string
+        type: array
+      votedAt:
+        example: "2024-01-15T10:30:00Z"
         type: string
     type: object
   github_com_EvolutionAPI_evolution-go_pkg_group_service.AddParticipantStruct:
@@ -112,6 +750,56 @@ definitions:
         type: boolean
       rejectCall:
         type: boolean
+    type: object
+  github_com_EvolutionAPI_evolution-go_pkg_instance_model.Instance:
+    properties:
+      alwaysOnline:
+        description: Advanced Settings
+        type: boolean
+      client_name:
+        type: string
+      connected:
+        type: boolean
+      createdAt:
+        type: string
+      disconnect_reason:
+        type: string
+      events:
+        type: string
+      expiration:
+        type: integer
+      id:
+        type: string
+      ignoreGroups:
+        type: boolean
+      ignoreStatus:
+        type: boolean
+      jid:
+        type: string
+      msgRejectCall:
+        type: string
+      name:
+        type: string
+      natsEnable:
+        type: string
+      os_name:
+        type: string
+      proxy:
+        type: string
+      qrcode:
+        type: string
+      rabbitmqEnable:
+        type: string
+      readMessages:
+        type: boolean
+      rejectCall:
+        type: boolean
+      token:
+        type: string
+      webhook:
+        type: string
+      websocketEnable:
+        type: string
     type: object
   github_com_EvolutionAPI_evolution-go_pkg_instance_service.ConnectStruct:
     properties:
@@ -294,283 +982,6 @@ definitions:
       jid:
         $ref: '#/definitions/go_mau_fi_whatsmeow_types.JID'
     type: object
-  github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollResults:
-    properties:
-      optionCounts:
-        additionalProperties:
-          type: integer
-        description: hash -> count
-        type: object
-      pollChatJid:
-        type: string
-      pollMessageId:
-        type: string
-      totalVotes:
-        type: integer
-      voters:
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_poll_model.VoterInfo'
-        type: array
-      votes:
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollVote'
-        type: array
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollVote:
-    properties:
-      companyId:
-        type: string
-      id:
-        type: string
-      instanceId:
-        type: string
-      pollChatJid:
-        type: string
-      pollMessageId:
-        type: string
-      receivedAt:
-        type: string
-      selectedOptions:
-        description: SHA-256 hashes
-        items:
-          type: string
-        type: array
-      voteMessageId:
-        type: string
-      votedAt:
-        type: string
-      voterJid:
-        type: string
-      voterName:
-        type: string
-      voterPhone:
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_poll_model.VoterInfo:
-    properties:
-      jid:
-        type: string
-      name:
-        type: string
-      phone:
-        type: string
-      selectedOptions:
-        items:
-          type: string
-        type: array
-      votedAt:
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Button:
-    properties:
-      copyCode:
-        description: Code placed in the clipboard when type=copy.
-        example: PROMO2026
-        type: string
-      currency:
-        description: ISO currency code for type=pix (e.g. BRL).
-        example: BRL
-        type: string
-      displayText:
-        description: Label rendered inside the button (reply / copy / url / call).
-          Ignored for pix.
-        example: Quero saber mais
-        type: string
-      id:
-        description: Callback payload for `reply` or code-to-copy internal id for
-          `copy`.
-        example: btn_info
-        type: string
-      key:
-        description: Pix key value matching the keyType.
-        example: "12345678900"
-        type: string
-      keyType:
-        description: 'Pix key type. One of: phone, email, cpf, cnpj, random.'
-        enum:
-        - phone
-        - email
-        - cpf
-        - cnpj
-        - random
-        example: cpf
-        type: string
-      name:
-        description: Merchant display name shown on the Pix sheet.
-        example: Minha Loja
-        type: string
-      phoneNumber:
-        description: Destination phone number (E.164) when type=call.
-        example: "+5582988898565"
-        type: string
-      type:
-        description: 'Button kind. One of: reply, copy, url, call, pix.'
-        enum:
-        - reply
-        - copy
-        - url
-        - call
-        - pix
-        example: reply
-        type: string
-      url:
-        description: Target URL when type=url.
-        example: https://evolutionapi.com
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ButtonStruct:
-    properties:
-      buttons:
-        description: Buttons array. See combination rules on the parent type description.
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Button'
-        type: array
-      delay:
-        description: Typing delay (milliseconds) applied before sending the message.
-        example: 1200
-        type: integer
-      description:
-        description: Body description text (required).
-        example: Confira as condicoes abaixo
-        type: string
-      footer:
-        description: Footer text (required).
-        example: Evolution GO
-        type: string
-      formatJid:
-        description: If false, skips automatic formatting/validation of `number` into
-          a JID.
-        type: boolean
-      mentionAll:
-        description: Mention every participant (groups only).
-        type: boolean
-      mentionedJid:
-        description: JIDs to mention inside the body text.
-        items:
-          type: string
-        type: array
-      number:
-        description: Destination phone number.
-        example: "5582988898565"
-        type: string
-      quoted:
-        allOf:
-        - $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.QuotedStruct'
-        description: Quoted (reply-to) context.
-      title:
-        description: Header title (required).
-        example: Oferta especial
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselButtonStruct:
-    properties:
-      copyCode:
-        description: Code placed in the clipboard when type=COPY.
-        example: PROMO2026
-        type: string
-      displayText:
-        description: Label rendered inside the button.
-        example: Quero saber mais
-        type: string
-      id:
-        description: 'Context-dependent: REPLY payload, URL target (type=URL) or phone
-          number (type=CALL).'
-        example: card1_info
-        type: string
-      type:
-        description: 'Button kind (case-insensitive). One of: REPLY (default), URL,
-          CALL, COPY.'
-        enum:
-        - REPLY
-        - URL
-        - CALL
-        - COPY
-        - reply
-        - url
-        - call
-        - copy
-        example: REPLY
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardBodyStruct:
-    properties:
-      text:
-        description: Main text of the card.
-        example: Card 1 - Oferta especial
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardHeaderStruct:
-    properties:
-      imageUrl:
-        description: Public URL to an image. Downloaded, uploaded to WhatsApp servers
-          and used as card media.
-        example: https://picsum.photos/seed/card1/600/400
-        type: string
-      subtitle:
-        description: Optional subtitle rendered below the title.
-        example: Somente hoje
-        type: string
-      title:
-        description: Optional visible title above the media.
-        example: Oferta do dia
-        type: string
-      videoUrl:
-        description: Public URL to a video. Used only when `imageUrl` is empty.
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardStruct:
-    properties:
-      body:
-        allOf:
-        - $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardBodyStruct'
-        description: Card body text (required).
-      buttons:
-        description: Buttons shown on the card. See CarouselButtonStruct for combination
-          rules.
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselButtonStruct'
-        type: array
-      footer:
-        description: Optional footer rendered under the body.
-        example: Por tempo limitado
-        type: string
-      header:
-        allOf:
-        - $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardHeaderStruct'
-        description: Card header (media + title/subtitle).
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselStruct:
-    properties:
-      body:
-        description: Optional message body shown above the cards.
-        example: Confira nossas novidades!
-        type: string
-      cards:
-        description: Cards displayed in order. At least one card is required.
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardStruct'
-        type: array
-      delay:
-        description: Typing delay (milliseconds) applied before sending the message.
-        example: 1200
-        type: integer
-      footer:
-        description: Optional message footer shown below the cards.
-        example: Evolution GO
-        type: string
-      formatJid:
-        description: If false, skips automatic formatting/validation of `number` into
-          a JID.
-        type: boolean
-      number:
-        description: Destination phone number.
-        example: "5582988898565"
-        type: string
-      quoted:
-        allOf:
-        - $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.QuotedStruct'
-        description: Quoted (reply-to) context.
-    type: object
   github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ContactStruct:
     properties:
       delay:
@@ -619,55 +1030,6 @@ definitions:
       title:
         type: string
       url:
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ListStruct:
-    properties:
-      buttonText:
-        description: Label of the button that opens the list. Defaults to "Ver Menu"
-          when empty.
-        example: Abrir cardapio
-        type: string
-      delay:
-        description: Typing delay (milliseconds) applied before sending the message.
-        example: 1200
-        type: integer
-      description:
-        description: Body description text (required).
-        example: Escolha o plano ideal para voce
-        type: string
-      footerText:
-        description: Footer text (required).
-        example: Evolution GO
-        type: string
-      formatJid:
-        description: If false, skips automatic formatting/validation of `number` into
-          a JID.
-        type: boolean
-      mentionAll:
-        description: Mention every participant (groups only).
-        type: boolean
-      mentionedJid:
-        description: JIDs to mention inside the body text.
-        items:
-          type: string
-        type: array
-      number:
-        description: Destination phone number.
-        example: "5582988898565"
-        type: string
-      quoted:
-        allOf:
-        - $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.QuotedStruct'
-        description: Quoted (reply-to) context.
-      sections:
-        description: Sections with rows. At least one section with one row is required.
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Section'
-        type: array
-      title:
-        description: Header title (required).
-        example: Nossos planos
         type: string
     type: object
   github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.LocationStruct:
@@ -756,34 +1118,6 @@ definitions:
       messageId:
         type: string
       participant:
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Row:
-    properties:
-      description:
-        description: Optional secondary line below the title.
-        example: R$ 29,90/mes
-        type: string
-      rowId:
-        description: Callback payload returned when the user taps the row. Auto-generated
-          if empty.
-        example: plan_basic
-        type: string
-      title:
-        description: Row main label.
-        example: Plano Basico
-        type: string
-    type: object
-  github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Section:
-    properties:
-      rows:
-        description: Rows inside this section.
-        items:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Row'
-        type: array
-      title:
-        description: Section heading (optional; rendered as a group separator).
-        example: Planos
         type: string
     type: object
   github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.StickerStruct:
@@ -6579,6 +6913,146 @@ definitions:
       details:
         $ref: '#/definitions/go_mau_fi_whatsmeow_proto_waVnameCert.VerifiedNameCertificate_Details'
     type: object
+  pkg_core.ActivateResponse:
+    properties:
+      message:
+        example: License activated successfully!
+        type: string
+      status:
+        example: active
+        type: string
+    type: object
+  pkg_core.Error400:
+    properties:
+      error:
+        $ref: '#/definitions/pkg_core.Error400Detail'
+      meta:
+        $ref: '#/definitions/pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  pkg_core.Error400Detail:
+    properties:
+      code:
+        example: BAD_REQUEST
+        type: string
+      message:
+        example: Invalid request data
+        type: string
+    type: object
+  pkg_core.Error401:
+    properties:
+      error:
+        $ref: '#/definitions/pkg_core.Error401Detail'
+      meta:
+        $ref: '#/definitions/pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  pkg_core.Error401Detail:
+    properties:
+      code:
+        example: UNAUTHORIZED
+        type: string
+      message:
+        example: Invalid or missing API key
+        type: string
+    type: object
+  pkg_core.Error403:
+    properties:
+      error:
+        $ref: '#/definitions/pkg_core.Error403Detail'
+      meta:
+        $ref: '#/definitions/pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  pkg_core.Error403Detail:
+    properties:
+      code:
+        example: FORBIDDEN
+        type: string
+      message:
+        example: Insufficient permissions
+        type: string
+    type: object
+  pkg_core.Error404:
+    properties:
+      error:
+        $ref: '#/definitions/pkg_core.Error404Detail'
+      meta:
+        $ref: '#/definitions/pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  pkg_core.Error404Detail:
+    properties:
+      code:
+        example: NOT_FOUND
+        type: string
+      message:
+        example: Resource not found
+        type: string
+    type: object
+  pkg_core.Error500:
+    properties:
+      error:
+        $ref: '#/definitions/pkg_core.Error500Detail'
+      meta:
+        $ref: '#/definitions/pkg_core.ErrorMeta'
+      success:
+        example: false
+        type: boolean
+    type: object
+  pkg_core.Error500Detail:
+    properties:
+      code:
+        example: INTERNAL_SERVER_ERROR
+        type: string
+      message:
+        example: An unexpected error occurred
+        type: string
+    type: object
+  pkg_core.ErrorMeta:
+    properties:
+      method:
+        example: GET
+        type: string
+      path:
+        example: /api/path
+        type: string
+      timestamp:
+        example: "2024-01-15T10:30:00Z"
+        type: string
+    type: object
+  pkg_core.RegisterResponse:
+    properties:
+      message:
+        example: License is already active
+        type: string
+      register_url:
+        example: https://app.evolution-api.com/register/12345
+        type: string
+      status:
+        example: pending
+        type: string
+    type: object
+  pkg_core.StatusResponse:
+    properties:
+      api_key:
+        example: evol...xyz
+        type: string
+      instance_id:
+        example: inst-12345
+        type: string
+      status:
+        example: active
+        type: string
+    type: object
   waCommon.LimitSharing:
     properties:
       initiatedByMe:
@@ -6611,7 +7085,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Reject call
+      description: Reject Call
       parameters:
       - description: Call data
         in: body
@@ -6623,14 +7097,30 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CallRejectResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
-      summary: Reject call
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
+      summary: Reject Call
       tags:
       - Call
   /chat/archive:
@@ -6651,19 +7141,31 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Archive a chat
       tags:
       - Chat
-  /chat/history-sync-request:
+  /chat/history-sync:
     post:
       consumes:
       - application/json
@@ -6681,15 +7183,27 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: HistorySyncRequest a chat
       tags:
       - Chat
@@ -6711,15 +7225,27 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Mute a chat
       tags:
       - Chat
@@ -6741,15 +7267,27 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Pin a chat
       tags:
       - Chat
@@ -6771,15 +7309,27 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Unarchive a chat
       tags:
       - Chat
@@ -6801,15 +7351,27 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Unmute a chat
       tags:
       - Chat
@@ -6831,15 +7393,27 @@ paths:
         "200":
           description: success
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Unpin a chat
       tags:
       - Chat
@@ -6859,17 +7433,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Add participant to community
       tags:
       - Community
@@ -6889,17 +7475,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Create community
       tags:
       - Community
@@ -6919,17 +7517,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Remove participant from community
       tags:
       - Community
@@ -6949,17 +7559,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfoResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Create group
       tags:
       - Group
@@ -6979,17 +7601,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set group description
       tags:
       - Group
@@ -7009,17 +7643,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfoResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get group info
       tags:
       - Group
@@ -7039,17 +7685,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInviteResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get group invite link
       tags:
       - Group
@@ -7069,17 +7727,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Join group link
       tags:
       - Group
@@ -7099,17 +7769,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Leave group
       tags:
       - Group
@@ -7122,13 +7804,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: List groups
       tags:
       - Group
@@ -7141,13 +7839,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get my groups
       tags:
       - Group
@@ -7167,17 +7881,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set group name
       tags:
       - Group
@@ -7197,17 +7923,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Update participant
       tags:
       - Group
@@ -7227,17 +7965,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupPhotoResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set group photo
       tags:
       - Group
@@ -7258,17 +8008,25 @@ paths:
           schema:
             $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.AdvancedSettings'
         "400":
-          description: Invalid instance ID
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
         "404":
-          description: Instance not found
+          description: Not Found
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get advanced settings
       tags:
       - Instance
@@ -7292,21 +8050,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Advanced settings updated successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.AdvancedSettingsResponse'
         "400":
-          description: Invalid request data
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
         "404":
-          description: Instance not found
+          description: Not Found
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Update advanced settings
       tags:
       - Instance
@@ -7319,13 +8085,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: All instances
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get all instances
       tags:
       - Instance
@@ -7345,17 +8127,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance connected successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ConnectFullResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Connect to instance
       tags:
       - Instance
@@ -7376,17 +8170,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance created successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Create a new instance
       tags:
       - Instance
@@ -7405,17 +8211,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance deleted successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Delete instance
       tags:
       - Instance
@@ -7428,13 +8246,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance disconnected successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Disconnect from instance
       tags:
       - Instance
@@ -7459,17 +8293,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance force reconnected successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Force reconnect
       tags:
       - Instance
@@ -7488,17 +8334,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get instance
       tags:
       - Instance
@@ -7511,13 +8369,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance logged out successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Logout from instance
       tags:
       - Instance
@@ -7537,17 +8411,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Pairing code
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PairResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Request pairing code
       tags:
       - Instance
@@ -7566,17 +8452,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Proxy deleted successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Delete proxy
       tags:
       - Instance
@@ -7600,17 +8498,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Proxy set successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set proxy configuration
       tags:
       - Instance
@@ -7623,13 +8533,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance QR code
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.QRFullResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get instance QR code
       tags:
       - Instance
@@ -7642,13 +8568,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance reconnected successfully
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Reconnect to instance
       tags:
       - Instance
@@ -7661,13 +8603,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: Instance status
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get instance status
       tags:
       - Instance
@@ -7680,13 +8638,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.LabelListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get all labels
       tags:
       - Label
@@ -7706,17 +8680,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Add label to chat
       tags:
       - Label
@@ -7736,17 +8722,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Edit label
       tags:
       - Label
@@ -7766,20 +8764,136 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Add label to message
       tags:
       - Label
+  /license/activate:
+    get:
+      description: Activate license using the token from registration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_core.ActivateResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_core.Error404'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg_core.Error500'
+      summary: Activate license
+      tags:
+      - License
+  /license/register:
+    get:
+      description: Initiate license registration process
+      parameters:
+      - description: Optional URL to redirect to after successful registration
+        in: query
+        name: redirect_uri
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_core.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_core.Error404'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg_core.Error500'
+      summary: Register a new license
+      tags:
+      - License
+  /license/status:
+    get:
+      description: Check if the license is active
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg_core.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/pkg_core.Error404'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg_core.Error500'
+      summary: Check license status
+      tags:
+      - License
   /message/delete:
     post:
       consumes:
@@ -7796,17 +8910,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Delete a message for everyone
       tags:
       - Message
@@ -7826,17 +8952,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Download an image
       tags:
       - Message
@@ -7856,17 +8994,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Edit a message
       tags:
       - Message
@@ -7886,17 +9036,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Mark a message as read
       tags:
       - Message
@@ -7916,17 +9078,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set chat presence
       tags:
       - Message
@@ -7947,17 +9121,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: React a message
       tags:
       - Message
@@ -7977,17 +9163,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get message status
       tags:
       - Message
@@ -8007,17 +9205,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Create newsletter
       tags:
       - Newsletter
@@ -8037,17 +9247,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get newsletter
       tags:
       - Newsletter
@@ -8067,17 +9289,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get newsletter invite
       tags:
       - Newsletter
@@ -8090,13 +9324,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: List newsletters
       tags:
       - Newsletter
@@ -8116,17 +9366,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessagesResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get newsletter messages
       tags:
       - Newsletter
@@ -8146,17 +9408,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Subscribe newsletter
       tags:
       - Newsletter
@@ -8177,19 +9451,27 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollResults'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get poll results
       tags:
       - Polls
@@ -8197,88 +9479,42 @@ paths:
     post:
       consumes:
       - application/json
-      description: |-
-        Send an interactive message with buttons. Each button has a `type`: `reply`, `copy`, `url`, `call` or `pix`.
-
-        Combination rules enforced by the server:
-        - Up to 3 `reply` buttons per message.
-        - `reply` buttons cannot be mixed with any other type.
-        - `pix` button must be sent ALONE (no other button in the same message).
-
-        WhatsApp client rendering quirks (NOT enforced by the server, but verified in the field):
-        - WhatsApp Web: only `reply`-only messages (up to 3) OR CTAs grouped together (`copy` + `url` + `call`) render correctly.
-        - Do NOT mix `reply` with CTA buttons (`copy`/`url`/`call`) — the message will not appear on WhatsApp Web.
-
-        Required body fields: `number`, `title`, `description`, `footer`, `buttons`.
+      description: Send a button message
       parameters:
       - description: Message data
         in: body
         name: message
         required: true
         schema:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ButtonStruct'
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ContactStruct'
       produces:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a button message
-      tags:
-      - Send Message
-  /send/carousel:
-    post:
-      consumes:
-      - application/json
-      description: |-
-        Send an interactive carousel (multiple swipeable cards). Each card carries its own image or video, body and optional buttons.
-
-        Card button `type` accepted values (case-insensitive, uppercased internally): `REPLY` (default), `URL`, `CALL`, `COPY`.
-        The `PIX` button type is NOT supported in carousel cards — use `/send/button` for PIX.
-
-        IMPORTANT — `CarouselButtonStruct` is different from the flat button used in `/send/button`:
-        - URL button: put the link in the `id` field (NOT in a `url` field).
-        - CALL button: put the phone number in the `id` field (NOT in a `phoneNumber` field).
-        - COPY button: put the code to be copied in `copyCode`.
-        - REPLY button: put the payload/callback ID in `id`.
-
-        Per-card combination rules (NOT enforced by the server, but verified in the field):
-        - Same WhatsApp Web quirk as `/send/button`: avoid mixing REPLY with CTA buttons (URL/CALL/COPY) in the same card — mixed sets do not render on Web.
-        - Stick to either "only REPLY" or "only CTAs grouped together" per card.
-
-        Required body fields: `number`, `cards` (at least one). Each card requires `header` + `body`.
-      parameters:
-      - description: Message data
-        in: body
-        name: message
-        required: true
-        schema:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselStruct'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: success
-          schema:
-            $ref: '#/definitions/gin.H'
-        "400":
-          description: Error on validation
-          schema:
-            $ref: '#/definitions/gin.H'
-        "500":
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/gin.H'
-      summary: Send a carousel message
       tags:
       - Send Message
   /send/contact:
@@ -8297,17 +9533,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a contact message
       tags:
       - Send Message
@@ -8327,17 +9575,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a link message
       tags:
       - Send Message
@@ -8345,36 +9605,41 @@ paths:
     post:
       consumes:
       - application/json
-      description: |-
-        Send an interactive list message (single-select) rendered as a tappable menu.
-
-        Required body fields: `number`, `title`, `description`, `footerText`, `buttonText`, `sections`.
-        Each section must contain one or more `rows`. When `rowId` is omitted, the server generates a fallback ID.
-        When `buttonText` is empty, the server falls back to "Ver Menu".
-
-        Uses legacy `ListMessage` format (no ViewOnceMessage wrapper) so it renders on iOS, Android and WhatsApp Web.
+      description: Send a list message
       parameters:
       - description: Message data
         in: body
         name: message
         required: true
         schema:
-          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ListStruct'
+          $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ContactStruct'
       produces:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a list message
       tags:
       - Send Message
@@ -8394,17 +9659,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a location message
       tags:
       - Send Message
@@ -8424,17 +9701,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a media message
       tags:
       - Send Message
@@ -8454,17 +9743,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a poll message
       tags:
       - Send Message
@@ -8484,17 +9785,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a sticker message
       tags:
       - Send Message
@@ -8514,20 +9827,65 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Send a text message
       tags:
       - Send Message
+  /server/ok:
+    get:
+      description: Returns the server status to verify it is running
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ServerOkResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
+      summary: Check server status
+      tags:
+      - Server
   /unlabel/chat:
     post:
       consumes:
@@ -8544,17 +9902,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Remove label from chat
       tags:
       - Label
@@ -8574,17 +9944,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Remove label from message
       tags:
       - Label
@@ -8604,17 +9986,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.AvatarResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get a user's avatar
       tags:
       - User
@@ -8634,17 +10028,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Block a contact
       tags:
       - User
@@ -8657,13 +10063,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get a user's block list
       tags:
       - User
@@ -8683,17 +10105,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppListResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Check a user
       tags:
       - User
@@ -8706,13 +10140,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ContactListResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get a user's contacts
       tags:
       - User
@@ -8732,17 +10182,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get a user
       tags:
       - User
@@ -8755,13 +10217,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Get a user's privacy settings
       tags:
       - User
@@ -8780,13 +10258,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set a user's privacy settings
       tags:
       - User
@@ -8806,17 +10300,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set a user's profile name
       tags:
       - User
@@ -8836,17 +10342,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set a user's profile picture
       tags:
       - User
@@ -8866,17 +10384,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Set a user's profile status
       tags:
       - User
@@ -8896,17 +10426,29 @@ paths:
       - application/json
       responses:
         "200":
-          description: success
+          description: OK
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockResponse'
         "400":
-          description: Error on validation
+          description: Bad Request
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404'
         "500":
-          description: Internal server error
+          description: Internal Server Error
           schema:
-            $ref: '#/definitions/gin.H'
+            $ref: '#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500'
       summary: Unblock a contact
       tags:
       - User

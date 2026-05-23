@@ -1903,6 +1903,7 @@ func (s *sendService) SendButton(data *ButtonStruct, instance *instance_model.In
 
 	hasReply := false
 	hasPayment := false
+	hasPix := false
 	hasOtherTypes := false
 	replyCount := 0
 
@@ -1913,6 +1914,8 @@ func (s *sendService) SendButton(data *ButtonStruct, instance *instance_model.In
 			replyCount++
 		case "review_and_pay":
 			hasPayment = true
+		case "pix":
+			hasPix = true
 		default:
 			hasOtherTypes = true
 		}
@@ -1933,6 +1936,12 @@ func (s *sendService) SendButton(data *ButtonStruct, instance *instance_model.In
 		}
 		if len(data.Buttons[0].Items) == 0 {
 			return nil, errors.New("botão do tipo 'review_and_pay' requer pelo menos 1 item")
+		}
+	}
+
+	if hasPix {
+		if len(data.Buttons) > 1 {
+			return nil, errors.New("botão do tipo 'pix' não pode ser combinado com outros botões")
 		}
 	}
 
@@ -2021,6 +2030,8 @@ func (s *sendService) SendButton(data *ButtonStruct, instance *instance_model.In
 		})
 	}
 
+	templateId := strconv.FormatInt(time.Now().UnixNano()/1000000, 10)
+	messageParamsJSON := `{"from":"api","templateId":"` + templateId + `"}`
 	var msg *waE2E.Message
 	var msgType string
 
@@ -2142,7 +2153,54 @@ func (s *sendService) SendButton(data *ButtonStruct, instance *instance_model.In
 			},
 		}
 		msgType = "InteractiveMessage"
+	} else if hasPix {
+		contextInfo := &waE2E.ContextInfo{}
+		if data.Quoted.MessageID != "" {
+			contextInfo.StanzaID = proto.String(data.Quoted.MessageID)
+			if data.Quoted.Participant != "" {
+				participantJID, ok := utils.ParseJID(data.Quoted.Participant)
+				if ok {
+					contextInfo.Participant = proto.String(participantJID.String())
+				}
+			}
+		}
+
+		msg = &waE2E.Message{
+			InteractiveMessage: &waE2E.InteractiveMessage{
+				Header: &waE2E.InteractiveMessage_Header{
+					Title:              proto.String(data.Title),
+					Subtitle:           proto.String(data.Description),
+					HasMediaAttachment: proto.Bool(false),
+				},
+				Body: &waE2E.InteractiveMessage_Body{
+					Text: proto.String(""),
+				},
+				InteractiveMessage: &waE2E.InteractiveMessage_NativeFlowMessage_{
+					NativeFlowMessage: &waE2E.InteractiveMessage_NativeFlowMessage{
+						Buttons:           buttons,
+						MessageParamsJSON: &messageParamsJSON,
+						MessageVersion:    proto.Int32(1),
+					},
+				},
+				ContextInfo: contextInfo,
+			},
+			MessageContextInfo: &waE2E.MessageContextInfo{
+				MessageSecret: btnMsgSecret,
+			},
+		}
+		msgType = "InteractiveMessage"
 	} else {
+		contextInfo := &waE2E.ContextInfo{}
+		if data.Quoted.MessageID != "" {
+			contextInfo.StanzaID = proto.String(data.Quoted.MessageID)
+			if data.Quoted.Participant != "" {
+				participantJID, ok := utils.ParseJID(data.Quoted.Participant)
+				if ok {
+					contextInfo.Participant = proto.String(participantJID.String())
+				}
+			}
+		}
+
 		// Mixed button types (url, copy, call) use InteractiveMessage DIRECT
 		body := func() string {
 			t := "*" + data.Title + "*"
@@ -2163,6 +2221,7 @@ func (s *sendService) SendButton(data *ButtonStruct, instance *instance_model.In
 					MessageVersion:    proto.Int32(1),
 				},
 			},
+			ContextInfo: contextInfo,
 		}
 		if data.Footer != "" {
 			interactive.Footer = &waE2E.InteractiveMessage_Footer{

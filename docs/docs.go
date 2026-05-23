@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/call/reject": {
             "post": {
-                "description": "Reject call",
+                "description": "Reject Call",
                 "consumes": [
                     "application/json"
                 ],
@@ -27,7 +27,7 @@ const docTemplate = `{
                 "tags": [
                     "Call"
                 ],
-                "summary": "Reject call",
+                "summary": "Reject Call",
                 "parameters": [
                     {
                         "description": "Call data",
@@ -41,15 +41,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CallRejectResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -83,25 +107,43 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
             }
         },
-        "/chat/history-sync-request": {
+        "/chat/history-sync": {
             "post": {
                 "description": "HistorySyncRequest a chat",
                 "consumes": [
@@ -129,19 +171,37 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -175,19 +235,37 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -221,19 +299,37 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -267,19 +363,37 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -313,19 +427,37 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -359,19 +491,37 @@ const docTemplate = `{
                     "200": {
                         "description": "success",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -403,21 +553,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -449,21 +617,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -495,21 +681,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -541,21 +745,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfoResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -587,21 +809,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -633,21 +873,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfoResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -679,21 +937,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInviteResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -725,21 +1001,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -771,21 +1065,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -806,15 +1118,39 @@ const docTemplate = `{
                 "summary": "List groups",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -835,15 +1171,39 @@ const docTemplate = `{
                 "summary": "Get my groups",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -875,21 +1235,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -921,21 +1299,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -967,21 +1363,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupPhotoResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1002,15 +1416,39 @@ const docTemplate = `{
                 "summary": "Get all instances",
                 "responses": {
                     "200": {
-                        "description": "All instances",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1042,21 +1480,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Instance connected successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ConnectFullResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1088,21 +1544,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Instance created successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1132,21 +1606,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Instance deleted successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1167,15 +1659,39 @@ const docTemplate = `{
                 "summary": "Disconnect from instance",
                 "responses": {
                     "200": {
-                        "description": "Instance disconnected successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1214,21 +1730,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Instance force reconnected successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1258,21 +1792,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Instance",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1293,15 +1845,39 @@ const docTemplate = `{
                 "summary": "Logout from instance",
                 "responses": {
                     "200": {
-                        "description": "Instance logged out successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1333,21 +1909,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Pairing code",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PairResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1386,21 +1980,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Proxy set successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1428,21 +2040,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Proxy deleted successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1463,15 +2093,39 @@ const docTemplate = `{
                 "summary": "Get instance QR code",
                 "responses": {
                     "200": {
-                        "description": "Instance QR code",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.QRFullResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1492,15 +2146,39 @@ const docTemplate = `{
                 "summary": "Reconnect to instance",
                 "responses": {
                     "200": {
-                        "description": "Instance reconnected successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1521,15 +2199,39 @@ const docTemplate = `{
                 "summary": "Get instance status",
                 "responses": {
                     "200": {
-                        "description": "Instance status",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1562,21 +2264,33 @@ const docTemplate = `{
                         }
                     },
                     "400": {
-                        "description": "Invalid instance ID",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
                         }
                     },
                     "404": {
-                        "description": "Instance not found",
+                        "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1613,27 +2327,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Advanced settings updated successfully",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.AdvancedSettingsResponse"
                         }
                     },
                     "400": {
-                        "description": "Invalid request data",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
                         }
                     },
                     "404": {
-                        "description": "Instance not found",
+                        "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1654,15 +2380,39 @@ const docTemplate = `{
                 "summary": "Get all labels",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.LabelListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1694,21 +2444,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1740,21 +2508,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1786,21 +2572,197 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
+                        }
+                    }
+                }
+            }
+        },
+        "/license/activate": {
+            "get": {
+                "description": "Activate license using the token from registration",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "License"
+                ],
+                "summary": "Activate license",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.ActivateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error404"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error500"
+                        }
+                    }
+                }
+            }
+        },
+        "/license/register": {
+            "get": {
+                "description": "Initiate license registration process",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "License"
+                ],
+                "summary": "Register a new license",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Optional URL to redirect to after successful registration",
+                        "name": "redirect_uri",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.RegisterResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error404"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error500"
+                        }
+                    }
+                }
+            }
+        },
+        "/license/status": {
+            "get": {
+                "description": "Check if the license is active",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "License"
+                ],
+                "summary": "Check license status",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.StatusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error404"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_core.Error500"
                         }
                     }
                 }
@@ -1832,21 +2794,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1878,21 +2858,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1924,21 +2922,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -1970,21 +2986,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2016,21 +3050,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2062,21 +3114,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2108,21 +3178,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2154,21 +3242,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2200,21 +3306,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2246,21 +3370,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2281,15 +3423,39 @@ const docTemplate = `{
                 "summary": "List newsletters",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2321,21 +3487,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessagesResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2367,21 +3551,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2413,25 +3615,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollResults"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2439,7 +3653,7 @@ const docTemplate = `{
         },
         "/send/button": {
             "post": {
-                "description": "Send an interactive message with buttons. Each button has a ` + "`" + `type` + "`" + `: ` + "`" + `reply` + "`" + `, ` + "`" + `copy` + "`" + `, ` + "`" + `url` + "`" + `, ` + "`" + `call` + "`" + ` or ` + "`" + `pix` + "`" + `.\n\nCombination rules enforced by the server:\n- Up to 3 ` + "`" + `reply` + "`" + ` buttons per message.\n- ` + "`" + `reply` + "`" + ` buttons cannot be mixed with any other type.\n- ` + "`" + `pix` + "`" + ` button must be sent ALONE (no other button in the same message).\n\nWhatsApp client rendering quirks (NOT enforced by the server, but verified in the field):\n- WhatsApp Web: only ` + "`" + `reply` + "`" + `-only messages (up to 3) OR CTAs grouped together (` + "`" + `copy` + "`" + ` + ` + "`" + `url` + "`" + ` + ` + "`" + `call` + "`" + `) render correctly.\n- Do NOT mix ` + "`" + `reply` + "`" + ` with CTA buttons (` + "`" + `copy` + "`" + `/` + "`" + `url` + "`" + `/` + "`" + `call` + "`" + `) — the message will not appear on WhatsApp Web.\n\nRequired body fields: ` + "`" + `number` + "`" + `, ` + "`" + `title` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `footer` + "`" + `, ` + "`" + `buttons` + "`" + `.",
+                "description": "Send a button message",
                 "consumes": [
                     "application/json"
                 ],
@@ -2457,73 +3671,45 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ButtonStruct"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ContactStruct"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
-                        }
-                    }
-                }
-            }
-        },
-        "/send/carousel": {
-            "post": {
-                "description": "Send an interactive carousel (multiple swipeable cards). Each card carries its own image or video, body and optional buttons.\n\nCard button ` + "`" + `type` + "`" + ` accepted values (case-insensitive, uppercased internally): ` + "`" + `REPLY` + "`" + ` (default), ` + "`" + `URL` + "`" + `, ` + "`" + `CALL` + "`" + `, ` + "`" + `COPY` + "`" + `.\nThe ` + "`" + `PIX` + "`" + ` button type is NOT supported in carousel cards — use ` + "`" + `/send/button` + "`" + ` for PIX.\n\nIMPORTANT — ` + "`" + `CarouselButtonStruct` + "`" + ` is different from the flat button used in ` + "`" + `/send/button` + "`" + `:\n- URL button: put the link in the ` + "`" + `id` + "`" + ` field (NOT in a ` + "`" + `url` + "`" + ` field).\n- CALL button: put the phone number in the ` + "`" + `id` + "`" + ` field (NOT in a ` + "`" + `phoneNumber` + "`" + ` field).\n- COPY button: put the code to be copied in ` + "`" + `copyCode` + "`" + `.\n- REPLY button: put the payload/callback ID in ` + "`" + `id` + "`" + `.\n\nPer-card combination rules (NOT enforced by the server, but verified in the field):\n- Same WhatsApp Web quirk as ` + "`" + `/send/button` + "`" + `: avoid mixing REPLY with CTA buttons (URL/CALL/COPY) in the same card — mixed sets do not render on Web.\n- Stick to either \"only REPLY\" or \"only CTAs grouped together\" per card.\n\nRequired body fields: ` + "`" + `number` + "`" + `, ` + "`" + `cards` + "`" + ` (at least one). Each card requires ` + "`" + `header` + "`" + ` + ` + "`" + `body` + "`" + `.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Send Message"
-                ],
-                "summary": "Send a carousel message",
-                "parameters": [
-                    {
-                        "description": "Message data",
-                        "name": "message",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselStruct"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "schema": {
-                            "$ref": "#/definitions/gin.H"
-                        }
-                    },
-                    "400": {
-                        "description": "Error on validation",
-                        "schema": {
-                            "$ref": "#/definitions/gin.H"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2555,21 +3741,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2601,21 +3805,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2623,7 +3845,7 @@ const docTemplate = `{
         },
         "/send/list": {
             "post": {
-                "description": "Send an interactive list message (single-select) rendered as a tappable menu.\n\nRequired body fields: ` + "`" + `number` + "`" + `, ` + "`" + `title` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `footerText` + "`" + `, ` + "`" + `buttonText` + "`" + `, ` + "`" + `sections` + "`" + `.\nEach section must contain one or more ` + "`" + `rows` + "`" + `. When ` + "`" + `rowId` + "`" + ` is omitted, the server generates a fallback ID.\nWhen ` + "`" + `buttonText` + "`" + ` is empty, the server falls back to \"Ver Menu\".\n\nUses legacy ` + "`" + `ListMessage` + "`" + ` format (no ViewOnceMessage wrapper) so it renders on iOS, Android and WhatsApp Web.",
+                "description": "Send a list message",
                 "consumes": [
                     "application/json"
                 ],
@@ -2641,27 +3863,45 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ListStruct"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ContactStruct"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2693,21 +3933,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2739,21 +3997,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2785,21 +4061,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2831,21 +4125,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2877,21 +4189,89 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
+                        }
+                    }
+                }
+            }
+        },
+        "/server/ok": {
+            "get": {
+                "description": "Returns the server status to verify it is running",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Server"
+                ],
+                "summary": "Check server status",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ServerOkResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2923,21 +4303,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -2969,21 +4367,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3015,21 +4431,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.AvatarResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3061,21 +4495,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3096,15 +4548,39 @@ const docTemplate = `{
                 "summary": "Get a user's block list",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3136,21 +4612,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppListResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3171,15 +4665,39 @@ const docTemplate = `{
                 "summary": "Get a user's contacts",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ContactListResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3211,21 +4729,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3246,15 +4782,39 @@ const docTemplate = `{
                 "summary": "Get a user's privacy settings",
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3284,15 +4844,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3324,21 +4908,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3370,21 +4972,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3416,21 +5036,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3462,21 +5100,39 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockResponse"
                         }
                     },
                     "400": {
-                        "description": "Error on validation",
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404"
                         }
                     },
                     "500": {
-                        "description": "Internal server error",
+                        "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/gin.H"
+                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500"
                         }
                     }
                 }
@@ -3484,10 +5140,6 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "gin.H": {
-            "type": "object",
-            "additionalProperties": {}
-        },
         "github_com_EvolutionAPI_evolution-go_pkg_call_service.RejectCallStruct": {
             "type": "object",
             "properties": {
@@ -3537,6 +5189,945 @@ const docTemplate = `{
             "properties": {
                 "communityName": {
                     "type": "string"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.AdvancedSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.AdvancedSettings"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.AvatarData": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "example": "https://pps.whatsapp.net/v/t61.24694-24/12345678_123456789012345_1234567890123456789_n.jpg"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.AvatarResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.AvatarData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistData": {
+            "type": "object",
+            "properties": {
+                "jids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "5511999999999@s.whatsapp.net",
+                        "5511988888888@s.whatsapp.net"
+                    ]
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.BlocklistData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.CallRejectResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionData": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "type": "integer",
+                    "example": 1705314600
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ChatActionData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.CommunityFullResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.CommunityResponse"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.CommunityResponse": {
+            "type": "object",
+            "properties": {
+                "jid": {
+                    "type": "string",
+                    "example": "1234567890@g.us"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ConnectData": {
+            "type": "object",
+            "properties": {
+                "eventString": {
+                    "type": "string",
+                    "example": "MESSAGE,GROUP_UP"
+                },
+                "jid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                },
+                "webhookUrl": {
+                    "type": "string",
+                    "example": "http://localhost:8080/webhook"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ConnectFullResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ConnectData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ContactInfoData": {
+            "type": "object",
+            "properties": {
+                "jid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                },
+                "pushName": {
+                    "type": "string",
+                    "example": "John Doe"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ContactListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ContactInfoData"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error400": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error400Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error400Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "BAD_REQUEST"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Invalid request data"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error401": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error401Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error401Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "UNAUTHORIZED"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Invalid or missing API key"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error403": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error403Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error403Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "FORBIDDEN"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Insufficient permissions"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error404": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error404Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error404Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "NOT_FOUND"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Resource not found"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error500": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.Error500Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.Error500Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "INTERNAL_SERVER_ERROR"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "An unexpected error occurred"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ErrorMeta": {
+            "type": "object",
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "example": "GET"
+                },
+                "path": {
+                    "type": "string",
+                    "example": "/api/path"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "example": "2024-01-15T10:30:00Z"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfo": {
+            "type": "object",
+            "properties": {
+                "isReadOnly": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "jid": {
+                    "type": "string",
+                    "example": "1234567890@g.us"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Group Name"
+                },
+                "owner": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfoResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfo"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.GroupInviteResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string",
+                    "example": "https://chat.whatsapp.com/..."
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.GroupListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.GroupInfo"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.GroupPhotoResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "pictureId": {
+                            "type": "string",
+                            "example": "1234567890"
+                        }
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncData": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "type": "string",
+                    "example": "3EB00000000000000000"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.HistorySyncData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.InstanceListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.Instance"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.InstanceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_instance_model.Instance"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusData": {
+            "type": "object",
+            "properties": {
+                "connected": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "loggedIn": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "myJid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Instance Name"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.InstanceStatusData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppResponse"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.IsOnWhatsAppResponse": {
+            "type": "object",
+            "properties": {
+                "exists": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "jid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.LabelData": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "uuid-string"
+                },
+                "instance_id": {
+                    "type": "string",
+                    "example": "uuid-string"
+                },
+                "label_color": {
+                    "type": "string",
+                    "example": "#dfaef0"
+                },
+                "label_id": {
+                    "type": "string",
+                    "example": "1"
+                },
+                "label_name": {
+                    "type": "string",
+                    "example": "Work"
+                },
+                "predefined_id": {
+                    "type": "string",
+                    "example": "1"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.LabelListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.LabelData"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.MessageKey": {
+            "type": "object",
+            "properties": {
+                "fromMe": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "id": {
+                    "type": "string",
+                    "example": "3EB00000000000000000"
+                },
+                "remoteJid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.MessageSendData": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.MessageKey"
+                },
+                "messageTimestamp": {
+                    "type": "integer",
+                    "example": 1705314600
+                },
+                "status": {
+                    "type": "string",
+                    "example": "PENDING"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterListResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMetadata"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessage": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "3EB00000000000000000"
+                },
+                "text": {
+                    "type": "string",
+                    "example": "Hello World"
+                },
+                "timestamp": {
+                    "type": "integer",
+                    "example": 1705314600
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessagesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMessage"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMetadata": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "example": "Updates about Evolution API"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "1234567890@newsletter"
+                },
+                "inviteCode": {
+                    "type": "string",
+                    "example": "AbCdEfGh1234"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Evolution API Channel"
+                },
+                "subscriberCount": {
+                    "type": "integer",
+                    "example": 150
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.NewsletterMetadata"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.PairResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "pairingCode": {
+                            "type": "string",
+                            "example": "ABC1DEF2"
+                        }
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.PollOptionCounts": {
+            "type": "object",
+            "properties": {
+                "option_1_hash": {
+                    "type": "integer",
+                    "example": 5
+                },
+                "option_2_hash": {
+                    "type": "integer",
+                    "example": 3
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsData": {
+            "type": "object",
+            "properties": {
+                "optionCounts": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PollOptionCounts"
+                },
+                "pollChatJid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                },
+                "pollMessageId": {
+                    "type": "string",
+                    "example": "3EB00000000000000000"
+                },
+                "totalVotes": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "voters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.VoterInfo"
+                    }
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PollResultsData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsData": {
+            "type": "object",
+            "properties": {
+                "groupadd": {
+                    "type": "string",
+                    "example": "all"
+                },
+                "last": {
+                    "type": "string",
+                    "example": "all"
+                },
+                "online": {
+                    "type": "string",
+                    "example": "all"
+                },
+                "profile": {
+                    "type": "string",
+                    "example": "all"
+                },
+                "readreceipts": {
+                    "type": "string",
+                    "example": "all"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "all"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.PrivacySettingsData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.QRData": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "1234567890"
+                },
+                "qrcode": {
+                    "type": "string",
+                    "example": "1@...|..."
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.QRFullResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.QRData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.SendMessageResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.MessageSendData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.ServerOkResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "example": "ok"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.SuccessResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockData": {
+            "type": "object",
+            "properties": {
+                "jid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserBlockData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoData": {
+            "type": "object",
+            "properties": {
+                "pictureId": {
+                    "type": "string",
+                    "example": "1234567890"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "Hey there! I am using WhatsApp."
+                },
+                "verifiedName": {
+                    "type": "string",
+                    "example": "John Doe"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserInfoData"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileData": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "type": "integer",
+                    "example": 1705314600
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_core.UserProfileData"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_core.VoterInfo": {
+            "type": "object",
+            "properties": {
+                "jid": {
+                    "type": "string",
+                    "example": "5511999999999@s.whatsapp.net"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                },
+                "selectedOptions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "option_1_hash"
+                    ]
+                },
+                "votedAt": {
+                    "type": "string",
+                    "example": "2024-01-15T10:30:00Z"
                 }
             }
         },
@@ -3659,6 +6250,81 @@ const docTemplate = `{
                 },
                 "rejectCall": {
                     "type": "boolean"
+                }
+            }
+        },
+        "github_com_EvolutionAPI_evolution-go_pkg_instance_model.Instance": {
+            "type": "object",
+            "properties": {
+                "alwaysOnline": {
+                    "description": "Advanced Settings",
+                    "type": "boolean"
+                },
+                "client_name": {
+                    "type": "string"
+                },
+                "connected": {
+                    "type": "boolean"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "disconnect_reason": {
+                    "type": "string"
+                },
+                "events": {
+                    "type": "string"
+                },
+                "expiration": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "ignoreGroups": {
+                    "type": "boolean"
+                },
+                "ignoreStatus": {
+                    "type": "boolean"
+                },
+                "jid": {
+                    "type": "string"
+                },
+                "msgRejectCall": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "natsEnable": {
+                    "type": "string"
+                },
+                "os_name": {
+                    "type": "string"
+                },
+                "proxy": {
+                    "type": "string"
+                },
+                "qrcode": {
+                    "type": "string"
+                },
+                "rabbitmqEnable": {
+                    "type": "string"
+                },
+                "readMessages": {
+                    "type": "boolean"
+                },
+                "rejectCall": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "webhook": {
+                    "type": "string"
+                },
+                "websocketEnable": {
+                    "type": "string"
                 }
             }
         },
@@ -3943,382 +6609,6 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollResults": {
-            "type": "object",
-            "properties": {
-                "optionCounts": {
-                    "description": "hash -\u003e count",
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "integer"
-                    }
-                },
-                "pollChatJid": {
-                    "type": "string"
-                },
-                "pollMessageId": {
-                    "type": "string"
-                },
-                "totalVotes": {
-                    "type": "integer"
-                },
-                "voters": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_poll_model.VoterInfo"
-                    }
-                },
-                "votes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollVote"
-                    }
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_poll_model.PollVote": {
-            "type": "object",
-            "properties": {
-                "companyId": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "instanceId": {
-                    "type": "string"
-                },
-                "pollChatJid": {
-                    "type": "string"
-                },
-                "pollMessageId": {
-                    "type": "string"
-                },
-                "receivedAt": {
-                    "type": "string"
-                },
-                "selectedOptions": {
-                    "description": "SHA-256 hashes",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "voteMessageId": {
-                    "type": "string"
-                },
-                "votedAt": {
-                    "type": "string"
-                },
-                "voterJid": {
-                    "type": "string"
-                },
-                "voterName": {
-                    "type": "string"
-                },
-                "voterPhone": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_poll_model.VoterInfo": {
-            "type": "object",
-            "properties": {
-                "jid": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "selectedOptions": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "votedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Button": {
-            "type": "object",
-            "properties": {
-                "copyCode": {
-                    "description": "Code placed in the clipboard when type=copy.",
-                    "type": "string",
-                    "example": "PROMO2026"
-                },
-                "currency": {
-                    "description": "ISO currency code for type=pix (e.g. BRL).",
-                    "type": "string",
-                    "example": "BRL"
-                },
-                "displayText": {
-                    "description": "Label rendered inside the button (reply / copy / url / call). Ignored for pix.",
-                    "type": "string",
-                    "example": "Quero saber mais"
-                },
-                "id": {
-                    "description": "Callback payload for ` + "`" + `reply` + "`" + ` or code-to-copy internal id for ` + "`" + `copy` + "`" + `.",
-                    "type": "string",
-                    "example": "btn_info"
-                },
-                "key": {
-                    "description": "Pix key value matching the keyType.",
-                    "type": "string",
-                    "example": "12345678900"
-                },
-                "keyType": {
-                    "description": "Pix key type. One of: phone, email, cpf, cnpj, random.",
-                    "type": "string",
-                    "enum": [
-                        "phone",
-                        "email",
-                        "cpf",
-                        "cnpj",
-                        "random"
-                    ],
-                    "example": "cpf"
-                },
-                "name": {
-                    "description": "Merchant display name shown on the Pix sheet.",
-                    "type": "string",
-                    "example": "Minha Loja"
-                },
-                "phoneNumber": {
-                    "description": "Destination phone number (E.164) when type=call.",
-                    "type": "string",
-                    "example": "+5582988898565"
-                },
-                "type": {
-                    "description": "Button kind. One of: reply, copy, url, call, pix.",
-                    "type": "string",
-                    "enum": [
-                        "reply",
-                        "copy",
-                        "url",
-                        "call",
-                        "pix"
-                    ],
-                    "example": "reply"
-                },
-                "url": {
-                    "description": "Target URL when type=url.",
-                    "type": "string",
-                    "example": "https://evolutionapi.com"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ButtonStruct": {
-            "type": "object",
-            "properties": {
-                "buttons": {
-                    "description": "Buttons array. See combination rules on the parent type description.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Button"
-                    }
-                },
-                "delay": {
-                    "description": "Typing delay (milliseconds) applied before sending the message.",
-                    "type": "integer",
-                    "example": 1200
-                },
-                "description": {
-                    "description": "Body description text (required).",
-                    "type": "string",
-                    "example": "Confira as condicoes abaixo"
-                },
-                "footer": {
-                    "description": "Footer text (required).",
-                    "type": "string",
-                    "example": "Evolution GO"
-                },
-                "formatJid": {
-                    "description": "If false, skips automatic formatting/validation of ` + "`" + `number` + "`" + ` into a JID.",
-                    "type": "boolean"
-                },
-                "mentionAll": {
-                    "description": "Mention every participant (groups only).",
-                    "type": "boolean"
-                },
-                "mentionedJid": {
-                    "description": "JIDs to mention inside the body text.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "number": {
-                    "description": "Destination phone number.",
-                    "type": "string",
-                    "example": "5582988898565"
-                },
-                "quoted": {
-                    "description": "Quoted (reply-to) context.",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.QuotedStruct"
-                        }
-                    ]
-                },
-                "title": {
-                    "description": "Header title (required).",
-                    "type": "string",
-                    "example": "Oferta especial"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselButtonStruct": {
-            "type": "object",
-            "properties": {
-                "copyCode": {
-                    "description": "Code placed in the clipboard when type=COPY.",
-                    "type": "string",
-                    "example": "PROMO2026"
-                },
-                "displayText": {
-                    "description": "Label rendered inside the button.",
-                    "type": "string",
-                    "example": "Quero saber mais"
-                },
-                "id": {
-                    "description": "Context-dependent: REPLY payload, URL target (type=URL) or phone number (type=CALL).",
-                    "type": "string",
-                    "example": "card1_info"
-                },
-                "type": {
-                    "description": "Button kind (case-insensitive). One of: REPLY (default), URL, CALL, COPY.",
-                    "type": "string",
-                    "enum": [
-                        "REPLY",
-                        "URL",
-                        "CALL",
-                        "COPY",
-                        "reply",
-                        "url",
-                        "call",
-                        "copy"
-                    ],
-                    "example": "REPLY"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardBodyStruct": {
-            "type": "object",
-            "properties": {
-                "text": {
-                    "description": "Main text of the card.",
-                    "type": "string",
-                    "example": "Card 1 - Oferta especial"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardHeaderStruct": {
-            "type": "object",
-            "properties": {
-                "imageUrl": {
-                    "description": "Public URL to an image. Downloaded, uploaded to WhatsApp servers and used as card media.",
-                    "type": "string",
-                    "example": "https://picsum.photos/seed/card1/600/400"
-                },
-                "subtitle": {
-                    "description": "Optional subtitle rendered below the title.",
-                    "type": "string",
-                    "example": "Somente hoje"
-                },
-                "title": {
-                    "description": "Optional visible title above the media.",
-                    "type": "string",
-                    "example": "Oferta do dia"
-                },
-                "videoUrl": {
-                    "description": "Public URL to a video. Used only when ` + "`" + `imageUrl` + "`" + ` is empty.",
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardStruct": {
-            "type": "object",
-            "properties": {
-                "body": {
-                    "description": "Card body text (required).",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardBodyStruct"
-                        }
-                    ]
-                },
-                "buttons": {
-                    "description": "Buttons shown on the card. See CarouselButtonStruct for combination rules.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselButtonStruct"
-                    }
-                },
-                "footer": {
-                    "description": "Optional footer rendered under the body.",
-                    "type": "string",
-                    "example": "Por tempo limitado"
-                },
-                "header": {
-                    "description": "Card header (media + title/subtitle).",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardHeaderStruct"
-                        }
-                    ]
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselStruct": {
-            "type": "object",
-            "properties": {
-                "body": {
-                    "description": "Optional message body shown above the cards.",
-                    "type": "string",
-                    "example": "Confira nossas novidades!"
-                },
-                "cards": {
-                    "description": "Cards displayed in order. At least one card is required.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.CarouselCardStruct"
-                    }
-                },
-                "delay": {
-                    "description": "Typing delay (milliseconds) applied before sending the message.",
-                    "type": "integer",
-                    "example": 1200
-                },
-                "footer": {
-                    "description": "Optional message footer shown below the cards.",
-                    "type": "string",
-                    "example": "Evolution GO"
-                },
-                "formatJid": {
-                    "description": "If false, skips automatic formatting/validation of ` + "`" + `number` + "`" + ` into a JID.",
-                    "type": "boolean"
-                },
-                "number": {
-                    "description": "Destination phone number.",
-                    "type": "string",
-                    "example": "5582988898565"
-                },
-                "quoted": {
-                    "description": "Quoted (reply-to) context.",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.QuotedStruct"
-                        }
-                    ]
-                }
-            }
-        },
         "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ContactStruct": {
             "type": "object",
             "properties": {
@@ -4392,71 +6682,6 @@ const docTemplate = `{
                 },
                 "url": {
                     "type": "string"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.ListStruct": {
-            "type": "object",
-            "properties": {
-                "buttonText": {
-                    "description": "Label of the button that opens the list. Defaults to \"Ver Menu\" when empty.",
-                    "type": "string",
-                    "example": "Abrir cardapio"
-                },
-                "delay": {
-                    "description": "Typing delay (milliseconds) applied before sending the message.",
-                    "type": "integer",
-                    "example": 1200
-                },
-                "description": {
-                    "description": "Body description text (required).",
-                    "type": "string",
-                    "example": "Escolha o plano ideal para voce"
-                },
-                "footerText": {
-                    "description": "Footer text (required).",
-                    "type": "string",
-                    "example": "Evolution GO"
-                },
-                "formatJid": {
-                    "description": "If false, skips automatic formatting/validation of ` + "`" + `number` + "`" + ` into a JID.",
-                    "type": "boolean"
-                },
-                "mentionAll": {
-                    "description": "Mention every participant (groups only).",
-                    "type": "boolean"
-                },
-                "mentionedJid": {
-                    "description": "JIDs to mention inside the body text.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "number": {
-                    "description": "Destination phone number.",
-                    "type": "string",
-                    "example": "5582988898565"
-                },
-                "quoted": {
-                    "description": "Quoted (reply-to) context.",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.QuotedStruct"
-                        }
-                    ]
-                },
-                "sections": {
-                    "description": "Sections with rows. At least one section with one row is required.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Section"
-                    }
-                },
-                "title": {
-                    "description": "Header title (required).",
-                    "type": "string",
-                    "example": "Nossos planos"
                 }
             }
         },
@@ -4591,43 +6816,6 @@ const docTemplate = `{
                 },
                 "participant": {
                     "type": "string"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Row": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "description": "Optional secondary line below the title.",
-                    "type": "string",
-                    "example": "R$ 29,90/mes"
-                },
-                "rowId": {
-                    "description": "Callback payload returned when the user taps the row. Auto-generated if empty.",
-                    "type": "string",
-                    "example": "plan_basic"
-                },
-                "title": {
-                    "description": "Row main label.",
-                    "type": "string",
-                    "example": "Plano Basico"
-                }
-            }
-        },
-        "github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Section": {
-            "type": "object",
-            "properties": {
-                "rows": {
-                    "description": "Rows inside this section.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_EvolutionAPI_evolution-go_pkg_sendMessage_service.Row"
-                    }
-                },
-                "title": {
-                    "description": "Section heading (optional; rendered as a group separator).",
-                    "type": "string",
-                    "example": "Planos"
                 }
             }
         },
@@ -12963,6 +15151,210 @@ const docTemplate = `{
                 },
                 "details": {
                     "$ref": "#/definitions/go_mau_fi_whatsmeow_proto_waVnameCert.VerifiedNameCertificate_Details"
+                }
+            }
+        },
+        "pkg_core.ActivateResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "License activated successfully!"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "active"
+                }
+            }
+        },
+        "pkg_core.Error400": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/pkg_core.Error400Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "pkg_core.Error400Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "BAD_REQUEST"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Invalid request data"
+                }
+            }
+        },
+        "pkg_core.Error401": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/pkg_core.Error401Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "pkg_core.Error401Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "UNAUTHORIZED"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Invalid or missing API key"
+                }
+            }
+        },
+        "pkg_core.Error403": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/pkg_core.Error403Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "pkg_core.Error403Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "FORBIDDEN"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Insufficient permissions"
+                }
+            }
+        },
+        "pkg_core.Error404": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/pkg_core.Error404Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "pkg_core.Error404Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "NOT_FOUND"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Resource not found"
+                }
+            }
+        },
+        "pkg_core.Error500": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/pkg_core.Error500Detail"
+                },
+                "meta": {
+                    "$ref": "#/definitions/pkg_core.ErrorMeta"
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": false
+                }
+            }
+        },
+        "pkg_core.Error500Detail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "INTERNAL_SERVER_ERROR"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "An unexpected error occurred"
+                }
+            }
+        },
+        "pkg_core.ErrorMeta": {
+            "type": "object",
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "example": "GET"
+                },
+                "path": {
+                    "type": "string",
+                    "example": "/api/path"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "example": "2024-01-15T10:30:00Z"
+                }
+            }
+        },
+        "pkg_core.RegisterResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "License is already active"
+                },
+                "register_url": {
+                    "type": "string",
+                    "example": "https://app.evolution-api.com/register/12345"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "pending"
+                }
+            }
+        },
+        "pkg_core.StatusResponse": {
+            "type": "object",
+            "properties": {
+                "api_key": {
+                    "type": "string",
+                    "example": "evol...xyz"
+                },
+                "instance_id": {
+                    "type": "string",
+                    "example": "inst-12345"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "active"
                 }
             }
         },
