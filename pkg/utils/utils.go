@@ -166,23 +166,6 @@ func formatBRNumber(jid string) string {
 		return jid
 	}
 
-	// Extract the first digit after DDD
-	if len(jid) < 6 {
-		return jid
-	}
-
-	firstDigit := jid[4:5]
-	firstDigitNum, err := strconv.Atoi(firstDigit)
-	if err != nil {
-		return jid
-	}
-
-	// Check if it's a mobile number (9 prefix) and DDD >= 31
-	if firstDigitNum >= 7 && dddNum >= 31 {
-		// Remove the 9 prefix for mobile numbers with DDD >= 31
-		return jid[:4] + jid[5:]
-	}
-
 	// Keep the number as is (landline or special case)
 	return jid
 }
