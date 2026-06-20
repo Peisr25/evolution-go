@@ -9,7 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"image"
-	"image/jpeg"
+	_ "image/jpeg"
 	"image/png"
 	"io"
 	"mime/multipart"
@@ -31,7 +31,6 @@ import (
 	waBinary "go.mau.fi/whatsmeow/binary"
 	"go.mau.fi/whatsmeow/proto/waE2E"
 	"go.mau.fi/whatsmeow/types"
-	"golang.org/x/image/draw"
 	"golang.org/x/net/html"
 	"google.golang.org/protobuf/proto"
 )
@@ -766,46 +765,6 @@ func fetchLinkMetadata(url string) (string, string, string, error) {
 	return title, description, imgURL, nil
 }
 
-// buildLinkThumbnail re-escala a imagem para um thumbnail nítido (lado maior ≤640px)
-// e codifica JPEG. Usado para JPEGThumbnail (inline) e MediaLinkThumbnail (DirectPath).
-// Mandar a imagem inteira (até ~2000px) como JPEGThumbnail faz o WhatsApp re-escalá-la
-// para baixo e o card (dims grandes) esticá-la = borrado. Com dims = tamanho real do
-// thumbnail, o card acompanha sem upscale → nítido. ok=false se não decoda (ex: webp
-// sem handler) → caller mantém fileData original (degrada para o comportamento anterior).
-func buildLinkThumbnail(fileData []byte) (thumb []byte, w, h uint32, ok bool) {
-	src, _, err := image.Decode(bytes.NewReader(fileData))
-	if err != nil {
-		return nil, 0, 0, false
-	}
-	const maxSide = 640
-	b := src.Bounds()
-	tw, th := b.Dx(), b.Dy()
-	if tw >= th {
-		if tw > maxSide {
-			th = th * maxSide / tw
-			tw = maxSide
-		}
-	} else {
-		if th > maxSide {
-			tw = tw * maxSide / th
-			th = maxSide
-		}
-	}
-	if tw < 1 {
-		tw = 1
-	}
-	if th < 1 {
-		th = 1
-	}
-	dst := image.NewRGBA(image.Rect(0, 0, tw, th))
-	draw.CatmullRom.Scale(dst, dst.Bounds(), src, src.Bounds(), draw.Src, nil)
-	var buf bytes.Buffer
-	if err := jpeg.Encode(&buf, dst, &jpeg.Options{Quality: 82}); err != nil {
-		return nil, 0, 0, false
-	}
-	return buf.Bytes(), uint32(tw), uint32(th), true
-}
-
 func (s *sendService) SendLink(data *LinkStruct, instance *instance_model.Instance) (*MessageSendStruct, error) {
 	return s.sendLinkWithRetry(data, instance, 3)
 }
@@ -838,61 +797,19 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 			data.ImgUrl = imgUrl
 		}
 
-		var fileData []byte
-		var thumbWidth, thumbHeight uint32
-		var thumbUpload *whatsmeow.UploadResponse
-		var jpegThumb []byte
-		if data.ImgUrl != "" {
-			resp, err := http.Get(data.ImgUrl)
-			if err != nil {
-				if attempt == maxRetries {
-					return nil, err
-				}
-				continue
-			}
-			defer resp.Body.Close()
-			fileData, _ = io.ReadAll(resp.Body)
-
-			// Thumbnail nítido (≤640px): JPEGThumbnail inline + upload DirectPath.
-			// Antes mandávamos a imagem inteira (até ~2000px) como JPEGThumbnail → o
-			// WhatsApp re-escalava para baixo e o card (dims grandes) esticava = borrado.
-			if thumb, tw, th, ok := buildLinkThumbnail(fileData); ok {
-				jpegThumb = thumb
-				fileData = thumb
-				thumbWidth = tw
-				thumbHeight = th
-			} else {
-				jpegThumb = fileData
-				if cfg, _, derr := image.DecodeConfig(bytes.NewReader(fileData)); derr == nil {
-					thumbWidth = uint32(cfg.Width)
-					thumbHeight = uint32(cfg.Height)
-				}
-			}
-			if up, uerr := client.Upload(context.Background(), fileData, whatsmeow.MediaLinkThumbnail); uerr == nil {
-				thumbUpload = &up
-			} else {
-				s.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] SendLink thumbnail upload falhou: %v", instance.Id, uerr)
-			}
-		}
-
+		// Sem thumbnail anexado: o WhatsApp busca o og:image do /r/<code> no receptor
+		// e renderiza nítido (igual ao envio manual no chat e ao linkPreview do engine
+		// Node/Baileys). Anexar thumbnail manual faz o WA downsamplear o upload e
+		// esticar = borrado — confirmado ao vivo: mesmo link enviado manual no chat sai
+		// nítido; via /send/link sai borrado; o upload MediaLinkThumbnail sucede (sem
+		// warn nos logs), então o borrado vem do thumbnail anexado, não da fonte.
 		previewType := waE2E.ExtendedTextMessage_NONE
 		ext := &waE2E.ExtendedTextMessage{
-			Text:          &data.Text,
-			Title:         &data.Title,
-			MatchedText:   &matchedText,
-			JPEGThumbnail: jpegThumb,
-			Description:   &data.Description,
-			PreviewType:   &previewType,
-		}
-		if thumbWidth > 0 && thumbHeight > 0 {
-			ext.ThumbnailWidth = &thumbWidth
-			ext.ThumbnailHeight = &thumbHeight
-		}
-		if thumbUpload != nil {
-			ext.ThumbnailDirectPath = &thumbUpload.DirectPath
-			ext.ThumbnailSHA256 = thumbUpload.FileSHA256
-			ext.ThumbnailEncSHA256 = thumbUpload.FileEncSHA256
-			ext.MediaKey = thumbUpload.MediaKey
+			Text:        &data.Text,
+			Title:       &data.Title,
+			MatchedText: &matchedText,
+			Description: &data.Description,
+			PreviewType: &previewType,
 		}
 		msg := &waE2E.Message{ExtendedTextMessage: ext}
 
