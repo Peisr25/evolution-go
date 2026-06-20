@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"image"
+	_ "image/jpeg"
 	"image/png"
 	"io"
 	"mime/multipart"
@@ -772,7 +773,7 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 	for attempt := 1; attempt <= maxRetries; attempt++ {
 		s.loggerWrapper.GetLogger(instance.Id).LogInfo("[%s] SendLink attempt %d/%d", instance.Id, attempt, maxRetries)
 
-		_, err := s.ensureClientConnectedWithRetry(instance.Id, 2)
+		client, err := s.ensureClientConnectedWithRetry(instance.Id, 2)
 		if err != nil {
 			if attempt == maxRetries {
 				return nil, err
@@ -797,6 +798,8 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 		}
 
 		var fileData []byte
+		var thumbWidth, thumbHeight uint32
+		var thumbUpload *whatsmeow.UploadResponse
 		if data.ImgUrl != "" {
 			resp, err := http.Get(data.ImgUrl)
 			if err != nil {
@@ -807,19 +810,40 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 			}
 			defer resp.Body.Close()
 			fileData, _ = io.ReadAll(resp.Body)
+
+			// Dimensões reais → WhatsApp sabe que é imagem grande (card grande, não thumbnail mini).
+			if cfg, _, derr := image.DecodeConfig(bytes.NewReader(fileData)); derr == nil {
+				thumbWidth = uint32(cfg.Width)
+				thumbHeight = uint32(cfg.Height)
+			}
+			// Upload do thumbnail hi-res: sem isso o WhatsApp só mostra o thumbnail mini inline.
+			if up, uerr := client.Upload(context.Background(), fileData, whatsmeow.MediaLinkThumbnail); uerr == nil {
+				thumbUpload = &up
+			} else {
+				s.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] SendLink thumbnail upload falhou (preview mini): %v", instance.Id, uerr)
+			}
 		}
 
-		previewType := waE2E.ExtendedTextMessage_VIDEO
-		msg := &waE2E.Message{
-			ExtendedTextMessage: &waE2E.ExtendedTextMessage{
-				Text:          &data.Text,
-				Title:         &data.Title,
-				MatchedText:   &matchedText,
-				JPEGThumbnail: fileData,
-				Description:   &data.Description,
-				PreviewType:   &previewType,
-			},
+		previewType := waE2E.ExtendedTextMessage_NONE
+		ext := &waE2E.ExtendedTextMessage{
+			Text:          &data.Text,
+			Title:         &data.Title,
+			MatchedText:   &matchedText,
+			JPEGThumbnail: fileData,
+			Description:   &data.Description,
+			PreviewType:   &previewType,
 		}
+		if thumbWidth > 0 && thumbHeight > 0 {
+			ext.ThumbnailWidth = &thumbWidth
+			ext.ThumbnailHeight = &thumbHeight
+		}
+		if thumbUpload != nil {
+			ext.ThumbnailDirectPath = &thumbUpload.DirectPath
+			ext.ThumbnailSHA256 = thumbUpload.FileSHA256
+			ext.ThumbnailEncSHA256 = thumbUpload.FileEncSHA256
+			ext.MediaKey = thumbUpload.MediaKey
+		}
+		msg := &waE2E.Message{ExtendedTextMessage: ext}
 
 		message, err := s.SendMessage(instance, msg, "ExtendedTextMessage", &SendDataStruct{
 			Id:           data.Id,
