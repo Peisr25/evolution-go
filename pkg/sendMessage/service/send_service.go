@@ -9,7 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"image"
-	_ "image/jpeg"
+	"image/jpeg"
 	"image/png"
 	"io"
 	"mime/multipart"
@@ -31,6 +31,7 @@ import (
 	waBinary "go.mau.fi/whatsmeow/binary"
 	"go.mau.fi/whatsmeow/proto/waE2E"
 	"go.mau.fi/whatsmeow/types"
+	"golang.org/x/image/draw"
 	"golang.org/x/net/html"
 	"google.golang.org/protobuf/proto"
 )
@@ -765,6 +766,46 @@ func fetchLinkMetadata(url string) (string, string, string, error) {
 	return title, description, imgURL, nil
 }
 
+// buildLinkPreviewThumbnail gera o jpegThumbnail inline (≤192px de largura) usado no
+// card de preview de link do WhatsApp. Replica o comportamento do Baileys
+// (getUrlInfo sem uploadImage: THUMBNAIL_WIDTH_PX=192, só jpegThumbnail inline, sem
+// ThumbnailDirectPath/dims). O WA mostra esse thumbnail no tamanho natural (nítido).
+// Anexar a imagem inteira (2000px) como JPEGThumbnail faz o WA downsamplear pro cap
+// de inline e esticar → borrado. ok=false se não decoda (caller mantém sem thumbnail).
+func buildLinkPreviewThumbnail(fileData []byte) (thumb []byte, w, h uint32, ok bool) {
+	src, _, err := image.Decode(bytes.NewReader(fileData))
+	if err != nil {
+		return nil, 0, 0, false
+	}
+	const maxSide = 192
+	b := src.Bounds()
+	tw, th := b.Dx(), b.Dy()
+	if tw >= th {
+		if tw > maxSide {
+			th = th * maxSide / tw
+			tw = maxSide
+		}
+	} else {
+		if th > maxSide {
+			tw = tw * maxSide / th
+			th = maxSide
+		}
+	}
+	if tw < 1 {
+		tw = 1
+	}
+	if th < 1 {
+		th = 1
+	}
+	dst := image.NewRGBA(image.Rect(0, 0, tw, th))
+	draw.CatmullRom.Scale(dst, dst.Bounds(), src, src.Bounds(), draw.Src, nil)
+	var buf bytes.Buffer
+	if err := jpeg.Encode(&buf, dst, &jpeg.Options{Quality: 80}); err != nil {
+		return nil, 0, 0, false
+	}
+	return buf.Bytes(), uint32(tw), uint32(th), true
+}
+
 func (s *sendService) SendLink(data *LinkStruct, instance *instance_model.Instance) (*MessageSendStruct, error) {
 	return s.sendLinkWithRetry(data, instance, 3)
 }
@@ -797,12 +838,22 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 			data.ImgUrl = imgUrl
 		}
 
-		// Sem thumbnail anexado: o WhatsApp busca o og:image do /r/<code> no receptor
-		// e renderiza nítido (igual ao envio manual no chat e ao linkPreview do engine
-		// Node/Baileys). Anexar thumbnail manual faz o WA downsamplear o upload e
-		// esticar = borrado — confirmado ao vivo: mesmo link enviado manual no chat sai
-		// nítido; via /send/link sai borrado; o upload MediaLinkThumbnail sucede (sem
-		// warn nos logs), então o borrado vem do thumbnail anexado, não da fonte.
+		// Thumbnail inline 192px (replica o getUrlInfo do Baileys sem uploadImage: só
+		// jpegThumbnail, sem ThumbnailDirectPath/dims). O WA mostra no tamanho natural
+		// → nítido (small), igual ao engine Node. Sem thumbnail = sem imagem no card.
+		var jpegThumb []byte
+		if data.ImgUrl != "" {
+			if resp, err := http.Get(data.ImgUrl); err == nil {
+				fileData, _ := io.ReadAll(resp.Body)
+				resp.Body.Close()
+				if thumb, _, _, ok := buildLinkPreviewThumbnail(fileData); ok {
+					jpegThumb = thumb
+				}
+			} else {
+				s.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] SendLink thumbnail fetch falhou: %v", instance.Id, err)
+			}
+		}
+
 		previewType := waE2E.ExtendedTextMessage_NONE
 		ext := &waE2E.ExtendedTextMessage{
 			Text:        &data.Text,
@@ -810,6 +861,9 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 			MatchedText: &matchedText,
 			Description: &data.Description,
 			PreviewType: &previewType,
+		}
+		if jpegThumb != nil {
+			ext.JPEGThumbnail = jpegThumb
 		}
 		msg := &waE2E.Message{ExtendedTextMessage: ext}
 
