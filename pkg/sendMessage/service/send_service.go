@@ -814,7 +814,7 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 	for attempt := 1; attempt <= maxRetries; attempt++ {
 		s.loggerWrapper.GetLogger(instance.Id).LogInfo("[%s] SendLink attempt %d/%d", instance.Id, attempt, maxRetries)
 
-		_, err := s.ensureClientConnectedWithRetry(instance.Id, 2)
+		client, err := s.ensureClientConnectedWithRetry(instance.Id, 2)
 		if err != nil {
 			if attempt == maxRetries {
 				return nil, err
@@ -838,16 +838,40 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 			data.ImgUrl = imgUrl
 		}
 
-		// Thumbnail inline 192px (replica o getUrlInfo do Baileys sem uploadImage: só
-		// jpegThumbnail, sem ThumbnailDirectPath/dims). O WA mostra no tamanho natural
-		// → nítido (small), igual ao engine Node. Sem thumbnail = sem imagem no card.
+		// Replica o caminho "uploadImage" do getUrlInfo do Baileys (evolution-api Node
+		// original), que produz card GRANDE + NÍTIDO: uploada a imagem cheia como
+		// MediaLinkThumbnail → ThumbnailDirectPath aponta pra imagem cheia; o WA baixa
+		// e decripta usando MediaKey + MediaKeyTimestamp e renderiza no card grande
+		// (ThumbnailWidth/Height = dims reais). O jpegThumbnail inline pequeno (192px)
+		// é só placeholder enquanto o DirectPath baixa.
+		//
+		// Bug do 431cdf1: setava DirectPath/MediaKey mas NÃO setava MediaKeyTimestamp →
+		// o WA não decriptava o DirectPath → caía no jpegThumbnail inline (que era a
+		// imagem cheia 2000px, downsampleada pelo cap de inline) → esticava p/ o card
+		// grande = borrado. O whatsmeow não retorna MediaKeyTimestamp no UploadResponse
+		// (só gera MediaKey random), então setamos manualmente = agora (o Baileys faz
+		// igual no encryptedStream com Date.now()).
 		var jpegThumb []byte
+		var thumbUpload *whatsmeow.UploadResponse
+		var thumbWidth, thumbHeight uint32
 		if data.ImgUrl != "" {
 			if resp, err := http.Get(data.ImgUrl); err == nil {
 				fileData, _ := io.ReadAll(resp.Body)
 				resp.Body.Close()
+				// dims reais da imagem cheia → card grande.
+				if cfg, _, derr := image.DecodeConfig(bytes.NewReader(fileData)); derr == nil {
+					thumbWidth = uint32(cfg.Width)
+					thumbHeight = uint32(cfg.Height)
+				}
+				// inline pequeno (placeholder nítido enquanto o DirectPath baixa).
 				if thumb, _, _, ok := buildLinkPreviewThumbnail(fileData); ok {
 					jpegThumb = thumb
+				}
+				// upload da imagem cheia → ThumbnailDirectPath (card grande nítido).
+				if up, uerr := client.Upload(context.Background(), fileData, whatsmeow.MediaLinkThumbnail); uerr == nil {
+					thumbUpload = &up
+				} else {
+					s.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] SendLink thumbnail upload falhou: %v", instance.Id, uerr)
 				}
 			} else {
 				s.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] SendLink thumbnail fetch falhou: %v", instance.Id, err)
@@ -864,6 +888,19 @@ func (s *sendService) sendLinkWithRetry(data *LinkStruct, instance *instance_mod
 		}
 		if jpegThumb != nil {
 			ext.JPEGThumbnail = jpegThumb
+		}
+		if thumbWidth > 0 && thumbHeight > 0 {
+			ext.ThumbnailWidth = &thumbWidth
+			ext.ThumbnailHeight = &thumbHeight
+		}
+		if thumbUpload != nil {
+			ext.ThumbnailDirectPath = &thumbUpload.DirectPath
+			ext.ThumbnailSHA256 = thumbUpload.FileSHA256
+			ext.ThumbnailEncSHA256 = thumbUpload.FileEncSHA256
+			ext.MediaKey = thumbUpload.MediaKey
+			// MediaKeyTimestamp = agora (seg). Chave p/ o WA decriptar o DirectPath.
+			now := time.Now().Unix()
+			ext.MediaKeyTimestamp = &now
 		}
 		msg := &waE2E.Message{ExtendedTextMessage: ext}
 
