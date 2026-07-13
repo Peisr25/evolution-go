@@ -8,18 +8,20 @@ WORKDIR /build
 COPY go.mod go.sum ./
 
 # Clonar whatsmeow-lib diretamente (submodule não é inicializado pelo Railway)
-RUN git clone https://github.com/EvolutionAPI/whatsmeow.git whatsmeow-lib && \
+# Fork Peisr25 = EvolutionAPI/whatsmeow + merge do tulir/main (tctoken exigido
+# pelo servidor no group create desde ~jun/2026; pin antigo 0923702 ficou mudo)
+RUN git clone https://github.com/Peisr25/whatsmeow.git whatsmeow-lib && \
     cd whatsmeow-lib && \
-    git checkout 0923702fb3fac8525241f15331b92116485d69eb
+    git checkout d9d7265ca740289bdd055f5d81bd6c0912819c66
 
-# Agora fazer download das dependências (com replace funcionando)
-RUN go mod download
+# Download best-effort (novas deps transitivas do whatsmeow entram via go mod tidy)
+RUN go mod download || true
 
 # Copiar o restante do código
 COPY . .
 
 ARG VERSION=dev
-RUN CGO_ENABLED=1 go build -ldflags "-X main.version=${VERSION}" -o server ./cmd/evolution-go
+RUN go mod tidy && CGO_ENABLED=1 go build -ldflags "-X main.version=${VERSION}" -o server ./cmd/evolution-go
 
 FROM alpine:3.19.1 AS final
 
