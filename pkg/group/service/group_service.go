@@ -349,12 +349,33 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 		}
 	}
 
-	// Pré-resolve LID dos participantes PN: o servidor exige endereçamento LID
-	// no create (PN = IQ dropado em silêncio). IsOnWhatsApp grava o mapeamento
-	// LID↔PN no store; whatsmeow-lib (CreateGroup) usa o store pra converter.
+	// Resolve participantes PN → JID autoritativo do usync. Na era LID
+	// (~jun/2026) o servidor retorna @lid como JID primário e DROPA em
+	// silêncio o create IQ endereçado por PN ("info query timed out");
+	// endereçado por LID responde na hora. O usync não devolve pn_jid,
+	// então o store LID↔PN não é populado — usamos o JID da resposta direto.
 	if len(pnPhones) > 0 {
-		if _, err := client.IsOnWhatsApp(context.Background(), pnPhones); err != nil {
-			g.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] IsOnWhatsApp pre-resolve LID falhou: %v", instance.Id, err)
+		resp, err := client.IsOnWhatsApp(context.Background(), pnPhones)
+		if err != nil {
+			g.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] IsOnWhatsApp resolve LID falhou (create segue com PN): %v", instance.Id, err)
+		} else {
+			byUser := map[string]types.JID{}
+			for _, item := range resp {
+				if item.IsIn && !item.JID.IsEmpty() {
+					q := strings.TrimPrefix(item.Query, "+")
+					if at := strings.IndexByte(q, '@'); at >= 0 {
+						q = q[:at]
+					}
+					byUser[q] = item.JID
+				}
+			}
+			for i, p := range participants {
+				if p.Server == types.DefaultUserServer {
+					if resolved, ok := byUser[p.User]; ok {
+						participants[i] = resolved
+					}
+				}
+			}
 		}
 	}
 
