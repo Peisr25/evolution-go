@@ -336,12 +336,25 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 	}
 
 	var participants []types.JID
+	var pnPhones []string
 	for _, participant := range data.Participants {
 		recipient, ok := utils.ParseJID(participant)
 		participants = append(participants, recipient)
 		if !ok {
 			g.loggerWrapper.GetLogger(instance.Id).LogError("[%s] Error validating message fields", instance.Id)
 			return nil, errors.New("invalid phone number")
+		}
+		if recipient.Server == types.DefaultUserServer {
+			pnPhones = append(pnPhones, "+"+recipient.User)
+		}
+	}
+
+	// Pré-resolve LID dos participantes PN: o servidor exige endereçamento LID
+	// no create (PN = IQ dropado em silêncio). IsOnWhatsApp grava o mapeamento
+	// LID↔PN no store; whatsmeow-lib (CreateGroup) usa o store pra converter.
+	if len(pnPhones) > 0 {
+		if _, err := client.IsOnWhatsApp(context.Background(), pnPhones); err != nil {
+			g.loggerWrapper.GetLogger(instance.Id).LogWarn("[%s] IsOnWhatsApp pre-resolve LID falhou: %v", instance.Id, err)
 		}
 	}
 

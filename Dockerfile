@@ -12,7 +12,7 @@ COPY go.mod go.sum ./
 # pelo servidor no group create desde ~jun/2026; pin antigo 0923702 ficou mudo)
 RUN git clone https://github.com/Peisr25/whatsmeow.git whatsmeow-lib && \
     cd whatsmeow-lib && \
-    git checkout d9d7265ca740289bdd055f5d81bd6c0912819c66
+    git checkout f319d4ff729d0eddae31326334ffa973736a6037
 
 # Download best-effort (novas deps transitivas do whatsmeow entram via go mod tidy)
 RUN go mod download || true
