@@ -375,6 +375,18 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 			for i, p := range participants {
 				if p.Server == types.DefaultUserServer {
 					if resolved, ok := byUser[p.User]; ok {
+						// Grava LID<->PN no store: o CreateGroup do whatsmeow le daqui pra
+						// emitir o attr phone_number=PN junto do jid=LID. Sem o mapeamento
+						// o IQ sai so com o LID e o servidor dropa em silencio (1m15s).
+						if resolved.Server == types.HiddenUserServer && client.Store != nil && client.Store.LIDs != nil {
+							if mapErr := client.Store.LIDs.PutLIDMapping(context.Background(), resolved, p); mapErr != nil {
+								g.loggerWrapper.GetLogger(instance.Id).LogWarn(
+									"[%s] PutLIDMapping falhou (%s -> %s): %v", instance.Id, resolved.String(), p.String(), mapErr)
+							} else {
+								g.loggerWrapper.GetLogger(instance.Id).LogInfo(
+									"[%s] DIAG PutLIDMapping ok: %s -> %s", instance.Id, resolved.String(), p.String())
+							}
+						}
 						participants[i] = resolved
 					}
 				}
