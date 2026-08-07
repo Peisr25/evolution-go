@@ -361,6 +361,9 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 		} else {
 			byUser := map[string]types.JID{}
 			for _, item := range resp {
+				g.loggerWrapper.GetLogger(instance.Id).LogInfo(
+					"[%s] DIAG usync: query=%s isIn=%t jid=%s",
+					instance.Id, item.Query, item.IsIn, item.JID.String())
 				if item.IsIn && !item.JID.IsEmpty() {
 					q := strings.TrimPrefix(item.Query, "+")
 					if at := strings.IndexByte(q, '@'); at >= 0 {
@@ -377,6 +380,19 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 				}
 			}
 		}
+	}
+
+	// DIAG (07/ago/2026): o create IQ (w:g2 → g.us) segue com "info query timed out"
+	// mesmo com a resolução acima. Este log separa as duas hipóteses:
+	//   server=s.whatsapp.net → usync NÃO resolveu (byUser não casou) e o IQ vai por PN;
+	//   server=lid            → LID addressing ok, e o drop vem de outra coisa (provável
+	//                           falta do attr phone_number=PN, que exige o patch f319d4f
+	//                           no whatsmeow-lib — hoje o submódulo está no de abril).
+	// Remover quando a causa estiver fechada.
+	for i, p := range participants {
+		g.loggerWrapper.GetLogger(instance.Id).LogInfo(
+			"[%s] DIAG create-group participante[%d]: user=%s server=%s jid=%s",
+			instance.Id, i, p.User, p.Server, p.String())
 	}
 
 	resp, err := client.CreateGroup(context.Background(), whatsmeow.ReqCreateGroup{
