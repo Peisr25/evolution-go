@@ -329,6 +329,27 @@ func (g *groupService) SetGroupDescription(data *SetGroupDescriptionStruct, inst
 	return nil
 }
 
+// normalizeParticipantJID devolve o JID na forma que o servidor aceita dentro de
+// uma lista de <participant>: User só com dígitos e sem sufixo de device.
+//
+// utils.CreateJID (pkg/utils/utils.go:118-121) prefixa "+" em TODO número, e o "+"
+// sobrevive dentro do campo User do JID — o log de produção mostra
+// `user=+552196921470580 server=s.whatsapp.net`. Isso quebra duas coisas:
+//
+//   - binary.validateNibble (binary/encoder.go:256) só aceita [0-9.-], então o User
+//     com "+" deixa de ser nibble-packed e vai pro wire como string crua. Nenhum JID
+//     que o servidor emite tem esse formato.
+//   - o chamador concatena outro "+" pra montar a query do usync, virando "++55...".
+//     O usync responde isIn=false, a resolução PN→LID nunca acontece e o participante
+//     segue como PN — ou seja, o fix de LID addressing nunca chegava a rodar.
+//
+// ToNonAD tira o device: participante de create/add vai sem ":N".
+func normalizeParticipantJID(jid types.JID) types.JID {
+	jid = jid.ToNonAD()
+	jid.User = strings.TrimLeft(jid.User, "+")
+	return jid
+}
+
 func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_model.Instance) (gin.H, error) {
 	client, err := g.ensureClientConnected(instance.Id)
 	if err != nil {
@@ -339,14 +360,19 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 	var pnPhones []string
 	for _, participant := range data.Participants {
 		recipient, ok := utils.ParseJID(participant)
-		participants = append(participants, recipient)
 		if !ok {
 			g.loggerWrapper.GetLogger(instance.Id).LogError("[%s] Error validating message fields", instance.Id)
 			return nil, errors.New("invalid phone number")
 		}
+		recipient = normalizeParticipantJID(recipient)
+		participants = append(participants, recipient)
 		if recipient.Server == types.DefaultUserServer {
 			pnPhones = append(pnPhones, "+"+recipient.User)
 		}
+
+		g.loggerWrapper.GetLogger(instance.Id).LogInfo(
+			"[%s] DIAG create-group entrada[%d]: raw=%q normalizado=%s",
+			instance.Id, len(participants)-1, participant, recipient.String())
 	}
 
 	// Resolve participantes PN → JID autoritativo do usync. Na era LID
@@ -365,7 +391,7 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 					"[%s] DIAG usync: query=%s isIn=%t jid=%s",
 					instance.Id, item.Query, item.IsIn, item.JID.String())
 				if item.IsIn && !item.JID.IsEmpty() {
-					q := strings.TrimPrefix(item.Query, "+")
+					q := strings.TrimLeft(item.Query, "+")
 					if at := strings.IndexByte(q, '@'); at >= 0 {
 						q = q[:at]
 					}
@@ -375,6 +401,7 @@ func (g *groupService) CreateGroup(data *CreateGroupStruct, instance *instance_m
 			for i, p := range participants {
 				if p.Server == types.DefaultUserServer {
 					if resolved, ok := byUser[p.User]; ok {
+						resolved = normalizeParticipantJID(resolved)
 						// Grava LID<->PN no store: o CreateGroup do whatsmeow le daqui pra
 						// emitir o attr phone_number=PN junto do jid=LID. Sem o mapeamento
 						// o IQ sai so com o LID e o servidor dropa em silencio (1m15s).
