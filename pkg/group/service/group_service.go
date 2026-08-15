@@ -32,7 +32,7 @@ type GroupService interface {
 	GetGroupRequestParticipants(data *GetGroupRequestParticipantsStruct, instance *instance_model.Instance) ([]EnrichedGroupParticipantRequest, error)
 	UpdateGroupRequestParticipants(data *UpdateGroupRequestParticipantsStruct, instance *instance_model.Instance) ([]types.GroupParticipant, error)
 	GetMyGroups(instance *instance_model.Instance) ([]types.GroupInfo, error)
-	JoinGroupLink(data *JoinGroupStruct, instance *instance_model.Instance) error
+	JoinGroupLink(data *JoinGroupStruct, instance *instance_model.Instance) (string, error)
 	LeaveGroup(data *LeaveGroupStruct, instance *instance_model.Instance) error
 }
 
@@ -541,19 +541,23 @@ func (g *groupService) GetMyGroups(instance *instance_model.Instance) ([]types.G
 	return myGroups, nil
 }
 
-func (g *groupService) JoinGroupLink(data *JoinGroupStruct, instance *instance_model.Instance) error {
+// JoinGroupLink devolve o JID do grupo. O whatsmeow já o retorna em
+// JoinGroupWithLink; descartá-lo deixava quem importa grupo por convite sem
+// como identificar o grupo recém-entrado — /group/create devolve o JID, só
+// este caminho ficava cego.
+func (g *groupService) JoinGroupLink(data *JoinGroupStruct, instance *instance_model.Instance) (string, error) {
 	client, err := g.ensureClientConnected(instance.Id)
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	_, err = client.JoinGroupWithLink(context.Background(), data.Code)
+	jid, err := client.JoinGroupWithLink(context.Background(), data.Code)
 	if err != nil {
-		g.loggerWrapper.GetLogger(instance.Id).LogError("[%s] error create group: %v", instance.Id, err)
-		return err
+		g.loggerWrapper.GetLogger(instance.Id).LogError("[%s] error join group: %v", instance.Id, err)
+		return "", err
 	}
 
-	return nil
+	return jid.String(), nil
 }
 
 func (g *groupService) LeaveGroup(data *LeaveGroupStruct, instance *instance_model.Instance) error {

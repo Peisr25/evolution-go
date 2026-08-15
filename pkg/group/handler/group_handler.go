@@ -463,13 +463,13 @@ func (g *groupHandler) JoinGroupLink(ctx *gin.Context) {
 		return
 	}
 
-	err = g.groupService.JoinGroupLink(data, instance)
+	jid, err := g.groupService.JoinGroupLink(data, instance)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{"message": "success"})
+	ctx.JSON(http.StatusOK, gin.H{"message": "success", "groupJid": jid})
 }
 
 // Leave group
