@@ -50,3 +50,9 @@ ANALISE-CORRECOES-CAROUSEL-PIX.md
 
 # IMPORTANT: O código-fonte (pkg/, cmd/, etc.) é necessário no stage de build
 # mas NÃO é copiado para a imagem final - apenas o executável compilado vai.
+# submodulos: .git de subdiretorio (whatsmeow-lib) quebra o buildkit
+**/.git
+
+# O Dockerfile clona o whatsmeow ele mesmo (pin f319d4f). Se o submodulo vier
+# no contexto, os dois se sobrepoem e duplicam simbolos protobuf.
+whatsmeow-lib/
