@@ -407,13 +407,18 @@ func (i instances) GetQr(instance *instance_model.Instance) (*QrcodeStruct, erro
 	logger := i.loggerWrapper.GetLogger(instance.Id)
 	client := i.clientPointer[instance.Id]
 
-	// Se não há cliente ou o cliente está logado, precisamos iniciar um novo cliente
-	if client == nil || client.IsLoggedIn() {
-		if client != nil && client.IsLoggedIn() {
-			logger.LogInfo("[%s] Client is logged in, starting new instance for QR code", instance.Id)
-		} else {
-			logger.LogInfo("[%s] No client found, starting new instance for QR code", instance.Id)
-		}
+	// Sessão logada NUNCA é reiniciada para servir QR: o StartInstance abaixo
+	// derruba o pareamento vivo, e qualquer consumidor que peça QR no caminho de
+	// status chega aqui sozinho — era assim que a instância do painel "desconectava"
+	// ao abrir a tela de conexão. Quem quer parear de novo passa por /instance/logout.
+	if client != nil && client.IsLoggedIn() {
+		logger.LogWarn("[%s] Refusing QR: session already logged in (logout first)", instance.Id)
+		return nil, fmt.Errorf("session already logged in")
+	}
+
+	// Sem cliente em memória: instância nunca iniciada ou processo reiniciado.
+	if client == nil {
+		logger.LogInfo("[%s] No client found, starting new instance for QR code", instance.Id)
 
 		// Iniciar nova instância para gerar QR code
 		err := i.whatsmeowService.StartInstance(instance.Id)
