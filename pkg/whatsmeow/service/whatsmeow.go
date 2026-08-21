@@ -362,7 +362,16 @@ func (w whatsmeowService) StartClient(cd *ClientData) {
 	}
 
 	store.DeviceProps.Os = &cd.Instance.OsName
-	store.DeviceProps.RequireFullSync = proto.Bool(true)
+	// RequireFullSync=false e o default do whatsmeow upstream. O fork forcava
+	// true, entao CADA pareamento pedia o historico COMPLETO da conta: o
+	// WhatsApp entrega isso em chunks por horas (medido 21/ago/2026: 2
+	// pareamentos geraram 126 eventos HistorySync em 24h, ainda chegando 3h
+	// depois do pair), e o celular da usuaria notifica ao longo de todo o
+	// processo. O Radar so DISPARA mensagem - nao le, nao lista e nao arquiva
+	// conversa - entao historico completo e puro custo: notificacao, banda e
+	// disco. Vale a partir do proximo pareamento (DeviceProps so entra no
+	// getRegistrationPayload, nunca no getLoginPayload).
+	store.DeviceProps.RequireFullSync = proto.Bool(false)
 
 	if w.config.WhatsappVersionMajor != 0 && w.config.WhatsappVersionMinor != 0 && w.config.WhatsappVersionPatch != 0 {
 		w.loggerWrapper.GetLogger(cd.Instance.Id).LogInfo("[%s] Setting whatsapp version to %d.%d.%d", cd.Instance.Id, w.config.WhatsappVersionMajor, w.config.WhatsappVersionMinor, w.config.WhatsappVersionPatch)
